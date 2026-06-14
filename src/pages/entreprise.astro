@@ -1,0 +1,75 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Entreprise">
+  <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
+
+    <div class="mb-16 reveal">
+      <span class="text-xs font-mono text-accent/60 block mb-3">01 / Entreprise</span>
+      <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-4">
+        L'entreprise
+      </h1>
+      <p class="text-neutral-500 text-lg">[Nom entreprise] · [Ville] · [Durée du stage]</p>
+    </div>
+
+    <!-- Fiche rapide -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 reveal reveal-delay-1">
+      {[
+        { label: 'Secteur', value: '[À remplir]' },
+        { label: 'Effectif', value: '[À remplir]' },
+        { label: 'Ville', value: '[À remplir]' },
+        { label: 'Durée', value: '[À remplir]' },
+      ].map(({ label, value }) => (
+        <div class="p-4 rounded-lg border border-white/5 bg-white/[0.02]">
+          <p class="text-xs text-neutral-600 mb-1">{label}</p>
+          <p class="text-white font-semibold">{value}</p>
+        </div>
+      ))}
+    </div>
+
+    <!-- Contenu -->
+    <div class="grid md:grid-cols-3 gap-12">
+      <div class="md:col-span-2 space-y-10">
+        <section class="reveal">
+          <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-4">Présentation</h2>
+          <p class="text-neutral-300 leading-relaxed">
+            [À REMPLIR — nom, secteur, activité principale, clients, positionnement]
+          </p>
+        </section>
+
+        <section class="reveal reveal-delay-1">
+          <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-4">Mon équipe</h2>
+          <p class="text-neutral-300 leading-relaxed">
+            [À REMPLIR — composition de l'équipe, organisation, avec qui j'ai travaillé]
+          </p>
+        </section>
+
+        <section class="reveal reveal-delay-2">
+          <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-4">Contexte du stage</h2>
+          <p class="text-neutral-300 leading-relaxed">
+            [À REMPLIR — comment j'ai trouvé ce stage, pourquoi cette entreprise]
+          </p>
+        </section>
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="reveal reveal-delay-1">
+        <div class="sticky top-20 p-5 rounded-xl border border-white/5 bg-white/[0.02]">
+          <h3 class="text-xs font-mono text-neutral-600 mb-4 uppercase tracking-widest">Technologies de l'entreprise</h3>
+          <div class="flex flex-wrap gap-2">
+            {['[Tech 1]', '[Tech 2]', '[Tech 3]'].map(t => (
+              <span class="text-xs px-2 py-1 rounded bg-accent/10 text-accent-light border border-accent/20">{t}</span>
+            ))}
+          </div>
+        </div>
+      </aside>
+    </div>
+
+    <!-- Navigation -->
+    <div class="flex justify-between mt-16 pt-8 border-t border-white/5 reveal">
+      <span class="text-neutral-700 text-sm">← Accueil</span>
+      <a href="/missions" class="text-accent-light hover:text-white text-sm transition-colors">Missions →</a>
+    </div>
+  </main>
+</Layout>

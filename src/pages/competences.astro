@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const technicals = [
+  { label: '[À REMPLIR]', level: 80, detail: '[description]' },
+  { label: '[À REMPLIR]', level: 65, detail: '[description]' },
+  { label: '[À REMPLIR]', level: 70, detail: '[description]' },
+];
+
+const soft = [
+  { label: 'Communication', detail: '[À REMPLIR]' },
+  { label: 'Autonomie', detail: '[À REMPLIR]' },
+  { label: 'Travail en équipe', detail: '[À REMPLIR]' },
+];
+---
+
+<Layout title="Compétences">
+  <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
+
+    <div class="mb-16 reveal">
+      <span class="text-xs font-mono text-accent/60 block mb-3">03 / Compétences</span>
+      <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-4">
+        Compétences
+      </h1>
+      <p class="text-neutral-500 text-lg">Techniques développées et savoir-être mobilisés</p>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-16">
+      <!-- Compétences techniques -->
+      <div>
+        <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-8 reveal">Techniques</h2>
+        <div class="space-y-8">
+          {technicals.map(({ label, level, detail }, i) => (
+            <div class={`reveal reveal-delay-${i}`}>
+              <div class="flex justify-between items-baseline mb-2">
+                <span class="text-white font-semibold">{label}</span>
+                <span class="text-xs text-neutral-600">{level}%</span>
+              </div>
+              <div class="h-0.5 bg-white/5 rounded-full overflow-hidden mb-2">
+                <div
+                  class="h-full bg-gradient-to-r from-accent to-accent-light rounded-full"
+                  style={`width: ${level}%`}
+                ></div>
+              </div>
+              <p class="text-sm text-neutral-500">{detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- Compétences transversales -->
+      <div>
+        <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-8 reveal">Transversales</h2>
+        <div class="space-y-4">
+          {soft.map(({ label, detail }, i) => (
+            <div class={`reveal reveal-delay-${i} p-5 rounded-xl border border-white/5 bg-white/[0.02]`}>
+              <p class="font-semibold text-white mb-1">{label}</p>
+              <p class="text-sm text-neutral-500">{detail}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-between mt-16 pt-8 border-t border-white/5 reveal">
+      <a href="/missions" class="text-accent-light hover:text-white text-sm transition-colors">← Missions</a>
+      <a href="/bilan" class="text-accent-light hover:text-white text-sm transition-colors">Bilan →</a>
+    </div>
+  </main>
+</Layout>

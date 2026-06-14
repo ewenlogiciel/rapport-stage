@@ -1,0 +1,63 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const missions = [
+  {
+    num: 'Mission 01',
+    title: '[À REMPLIR]',
+    tags: ['[Tech]', '[Tech]'],
+    description: '[À REMPLIR — objectif, ce qui a été réalisé, résultat]',
+  },
+  {
+    num: 'Mission 02',
+    title: '[À REMPLIR]',
+    tags: ['[Tech]', '[Tech]'],
+    description: '[À REMPLIR]',
+  },
+  {
+    num: 'Mission 03',
+    title: '[À REMPLIR]',
+    tags: ['[Tech]'],
+    description: '[À REMPLIR]',
+  },
+];
+---
+
+<Layout title="Missions">
+  <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
+
+    <div class="mb-16 reveal">
+      <span class="text-xs font-mono text-accent/60 block mb-3">02 / Missions</span>
+      <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-4">
+        Mes missions
+      </h1>
+      <p class="text-neutral-500 text-lg">Ce que j'ai concrètement produit pendant le stage</p>
+    </div>
+
+    <div class="space-y-6">
+      {missions.map(({ num, title, tags, description }, i) => (
+        <article
+          class={`reveal reveal-delay-${i} group p-8 rounded-xl border border-white/5 bg-white/[0.02] hover:border-accent/20 hover:bg-white/[0.04] transition-all duration-300`}
+        >
+          <div class="flex flex-col md:flex-row md:items-start gap-6">
+            <span class="text-xs font-mono text-accent/50 pt-1 shrink-0 w-24">{num}</span>
+            <div class="flex-1">
+              <h2 class="text-2xl font-bold text-white mb-3 group-hover:text-accent-light transition-colors">{title}</h2>
+              <div class="flex flex-wrap gap-2 mb-4">
+                {tags.map(t => (
+                  <span class="text-xs px-2 py-1 rounded bg-accent/10 text-accent-light border border-accent/20">{t}</span>
+                ))}
+              </div>
+              <p class="text-neutral-400 leading-relaxed">{description}</p>
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="flex justify-between mt-16 pt-8 border-t border-white/5 reveal">
+      <a href="/entreprise" class="text-accent-light hover:text-white text-sm transition-colors">← Entreprise</a>
+      <a href="/competences" class="text-accent-light hover:text-white text-sm transition-colors">Compétences →</a>
+    </div>
+  </main>
+</Layout>
