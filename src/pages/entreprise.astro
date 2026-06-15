@@ -6,48 +6,75 @@ import Layout from '../layouts/Layout.astro';
   <main class="max-w-5xl mx-auto px-6 pt-28 pb-24">
 
     <div class="mb-16 reveal">
-      <span class="text-xs font-mono text-accent/60 block mb-3">01 / Entreprise</span>
-      <h1 class="text-5xl md:text-6xl font-black tracking-tighter text-white mb-4">
+      <span class="font-mono text-[10px] text-accent/50 tracking-[0.2em] uppercase block mb-4">01 / Entreprise</span>
+      <h1 class="font-display font-extrabold tracking-tight text-white leading-[0.9] mb-4 text-[3rem] md:text-[4.5rem] lg:text-[6rem]">
         L'entreprise
       </h1>
-      <p class="text-neutral-500 text-lg">[Nom entreprise] · [Ville] · [Durée du stage]</p>
+      <p class="font-mono text-xs text-neutral-600 tracking-wide uppercase">Api restauration · Lille · 18 semaines</p>
     </div>
 
     <!-- Fiche rapide -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 reveal reveal-delay-1">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.04] rounded-xl overflow-hidden mb-16 reveal reveal-delay-1">
       {[
-        { label: 'Secteur', value: '[À remplir]' },
-        { label: 'Effectif', value: '[À remplir]' },
+        { label: 'Secteur', value: 'Restauration collective' },
+        { label: 'Effectif', value: '12 750' },
         { label: 'Ville', value: '[À remplir]' },
-        { label: 'Durée', value: '[À remplir]' },
+        { label: 'Durée', value: '18 semaines' },
       ].map(({ label, value }) => (
-        <div class="p-4 rounded-lg border border-white/5 bg-white/[0.02]">
-          <p class="text-xs text-neutral-600 mb-1">{label}</p>
-          <p class="text-white font-semibold">{value}</p>
+        <div class="bg-canvas p-5">
+          <p class="font-mono text-[10px] text-neutral-600 uppercase tracking-[0.15em] mb-2">{label}</p>
+          <p class="font-display font-extrabold tracking-tight text-white text-lg leading-tight">{value}</p>
         </div>
       ))}
+    </div>
+
+    <!-- Chiffres clés 2025 -->
+    <div class="mb-20 reveal reveal-delay-1">
+      <p class="font-mono text-[10px] text-accent/50 mb-6 uppercase tracking-[0.2em]">Chiffres clés 2025</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-px bg-white/[0.04] rounded-xl overflow-hidden">
+        {[
+          { value: '1,25 Md€', label: 'de chiffre d\'affaires' },
+          { value: '1 260 000', label: 'repas par jour' },
+          { value: '11 200', label: 'collaborateurs en France' },
+          { value: '1 550', label: 'collaborateurs à l\'international' },
+        ].map(({ value, label }) => (
+          <div class="bg-canvas p-6 md:p-8 hover:bg-surface transition-colors duration-300">
+            <span class="font-display font-extrabold tracking-tight text-white block mb-2 leading-none text-[1.6rem] md:text-[2rem]">{value}</span>
+            <span class="font-mono text-[10px] text-neutral-600 uppercase tracking-[0.1em] leading-snug block">{label}</span>
+          </div>
+        ))}
+      </div>
     </div>
 
     <!-- Contenu -->
     <div class="grid md:grid-cols-3 gap-12">
       <div class="md:col-span-2 space-y-10">
         <section class="reveal">
-          <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-4">Présentation</h2>
-          <p class="text-neutral-300 leading-relaxed">
+          <h2 class="font-display font-extrabold tracking-tight text-xl text-white mb-4 flex items-center gap-3">
+            <span class="w-5 h-px bg-accent/60 flex-shrink-0"></span>
+            Présentation
+          </h2>
+          <p class="text-neutral-400 leading-relaxed text-sm">
             [À REMPLIR — nom, secteur, activité principale, clients, positionnement]
           </p>
         </section>
 
         <section class="reveal reveal-delay-1">
-          <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-4">Mon équipe</h2>
-          <p class="text-neutral-300 leading-relaxed">
+          <h2 class="font-display font-extrabold tracking-tight text-xl text-white mb-4 flex items-center gap-3">
+            <span class="w-5 h-px bg-accent/60 flex-shrink-0"></span>
+            Mon équipe
+          </h2>
+          <p class="text-neutral-400 leading-relaxed text-sm">
             [À REMPLIR — composition de l'équipe, organisation, avec qui j'ai travaillé]
           </p>
         </section>
 
         <section class="reveal reveal-delay-2">
-          <h2 class="text-xs font-mono text-accent-light tracking-widest uppercase mb-4">Contexte du stage</h2>
-          <p class="text-neutral-300 leading-relaxed">
+          <h2 class="font-display font-extrabold tracking-tight text-xl text-white mb-4 flex items-center gap-3">
+            <span class="w-5 h-px bg-accent/60 flex-shrink-0"></span>
+            Contexte du stage
+          </h2>
+          <p class="text-neutral-400 leading-relaxed text-sm">
             [À REMPLIR — comment j'ai trouvé ce stage, pourquoi cette entreprise]
           </p>
         </section>
@@ -55,11 +82,11 @@ import Layout from '../layouts/Layout.astro';
 
       <!-- Sidebar -->
       <aside class="reveal reveal-delay-1">
-        <div class="sticky top-20 p-5 rounded-xl border border-white/5 bg-white/[0.02]">
-          <h3 class="text-xs font-mono text-neutral-600 mb-4 uppercase tracking-widest">Technologies de l'entreprise</h3>
+        <div class="sticky top-20 p-5 rounded-xl border border-white/[0.05] bg-surface">
+          <h3 class="font-mono text-[10px] text-neutral-600 mb-4 uppercase tracking-[0.2em]">Technologies de l'entreprise</h3>
           <div class="flex flex-wrap gap-2">
             {['[Tech 1]', '[Tech 2]', '[Tech 3]'].map(t => (
-              <span class="text-xs px-2 py-1 rounded bg-accent/10 text-accent-light border border-accent/20">{t}</span>
+              <span class="font-mono text-[10px] px-2.5 py-1 rounded bg-accent/10 text-accent-light border border-accent/20 uppercase tracking-wide">{t}</span>
             ))}
           </div>
         </div>
@@ -67,9 +94,9 @@ import Layout from '../layouts/Layout.astro';
     </div>
 
     <!-- Navigation -->
-    <div class="flex justify-between mt-16 pt-8 border-t border-white/5 reveal">
-      <span class="text-neutral-700 text-sm">← Accueil</span>
-      <a href="/missions" class="text-accent-light hover:text-white text-sm transition-colors">Missions →</a>
+    <div class="flex justify-between mt-16 pt-8 border-t border-white/[0.04] reveal">
+      <a href="/" class="font-mono text-[10px] text-accent/60 hover:text-accent uppercase tracking-widest transition-colors">← Accueil</a>
+      <a href="/missions" class="font-mono text-[10px] text-accent/60 hover:text-accent uppercase tracking-widest transition-colors">Missions →</a>
     </div>
   </main>
 </Layout>

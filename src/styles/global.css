@@ -1,17 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  /* Couleurs de marque — modifier ici pour changer tout le site */
   --color-accent: #3b82f6;
   --color-accent-light: #60a5fa;
-
-  /* Arrière-plans */
-  --color-canvas: #080810;
-  --color-surface: #0f0f1a;
-  --color-surface-hover: #13132a;
-
-  /* Typographie */
-  --font-family-sans: 'Inter', system-ui, sans-serif;
+  --color-canvas: #06060c;
+  --color-surface: #0b0b13;
+  --color-surface-hover: #0f0f1a;
+  --font-family-sans: 'DM Sans', system-ui, sans-serif;
+  --font-family-display: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --font-family-mono: 'DM Mono', monospace;
 }
 
 @layer base {
@@ -21,54 +18,44 @@
 
   body {
     background-color: var(--color-canvas);
-    color: #f0f0f5;
+    background-image: radial-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px);
+    background-size: 28px 28px;
+    color: #e8e8f0;
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-accent) 20%, transparent);
+    background-color: color-mix(in srgb, var(--color-accent) 22%, transparent);
     color: var(--color-accent-light);
   }
 
-  ::-webkit-scrollbar {
-    width: 4px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: var(--color-canvas);
-  }
-
+  ::-webkit-scrollbar { width: 3px; }
+  ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: var(--color-surface-hover);
-    border-radius: 2px;
+    background: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    border-radius: 99px;
   }
 }
 
-/* Animations au scroll */
+.font-display {
+  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+}
+.font-mono {
+  font-family: 'DM Mono', 'Courier New', monospace;
+}
+
 .reveal {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(28px);
+  transition:
+    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
-
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
+.reveal-delay-1 { transition-delay: 0.10s; }
+.reveal-delay-2 { transition-delay: 0.22s; }
+.reveal-delay-3 { transition-delay: 0.36s; }
+.reveal-delay-4 { transition-delay: 0.52s; }
 
-.reveal-delay-1 { transition-delay: 0.1s; }
-.reveal-delay-2 { transition-delay: 0.2s; }
-.reveal-delay-3 { transition-delay: 0.3s; }
-.reveal-delay-4 { transition-delay: 0.4s; }
-
-/* Grain overlay */
-.grain::before {
-  content: '';
-  position: fixed;
-  inset: -200%;
-  width: 400%;
-  height: 400%;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
-  opacity: 0.025;
-  pointer-events: none;
-  z-index: 9999;
-}
