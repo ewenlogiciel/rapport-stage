@@ -19,8 +19,8 @@ const { competences } = Astro.props;
 >
   <div
     data-parallax="0.04"
-    class="absolute top-[24px] right-[clamp(20px,7vw,80px)] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
-    style="font-size:clamp(120px,22vw,360px);"
+    class="absolute top-[24px] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
+    style="right:clamp(20px,7vw,80px); font-size:clamp(120px,22vw,360px);"
   >03</div>
 
   <div class="relative z-[1] max-w-[1200px] mx-auto">
@@ -37,7 +37,7 @@ const { competences } = Astro.props;
       Ce que le stage a fait grandir.
     </h2>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:18px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(300px,100%),1fr)); gap:18px;">
       {competences.map((c) => (
         <div
           class="reveal flex flex-col border border-white/[0.08] rounded-[14px] transition-all duration-300 hover:border-accent/40"

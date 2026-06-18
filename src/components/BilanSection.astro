@@ -16,8 +16,8 @@ const { takeaways } = Astro.props;
 >
   <div
     data-parallax="0.04"
-    class="absolute top-[24px] left-[clamp(20px,7vw,80px)] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
-    style="font-size:clamp(120px,22vw,360px);"
+    class="absolute top-[24px] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
+    style="left:clamp(20px,7vw,80px); font-size:clamp(120px,22vw,360px);"
   >04</div>
 
   <div class="relative z-[1] max-w-[1200px] mx-auto">
@@ -47,7 +47,7 @@ const { takeaways } = Astro.props;
       </span>
     </p>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px; margin-top:48px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(260px,100%),1fr)); gap:18px; margin-top:48px;">
       {takeaways.map((t) => (
         <div class="reveal" style="border-left:2px solid var(--color-accent); padding:6px 0 6px 22px;">
           <div class="font-mono text-[11px] tracking-[0.1em] uppercase text-accent mb-3">{t.k}</div>

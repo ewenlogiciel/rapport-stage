@@ -141,7 +141,7 @@ const takeaways = [
   <head>
     <BaseHead title="Rapport de Stage — Ewen Davanzo" />
   </head>
-  <body class="font-sans antialiased overflow-x-hidden">
+  <body class="font-sans antialiased" style="overflow-x:hidden;">
 
     <!-- ambient background -->
     <div class="fixed inset-0 z-0 pointer-events-none">
@@ -191,20 +191,6 @@ const takeaways = [
         });
       }, { threshold: 0.1 });
       document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
-
-      // ── TERMINAL LINES ─────────────────────────────────────────────────────
-      const termLines = Array.from(document.querySelectorAll<HTMLElement>('[data-termline]'));
-      termLines.forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateX(-8px)';
-        el.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
-      });
-      termLines.forEach((el, i) => {
-        setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, 350 + i * 180);
-      });
-      setTimeout(() => {
-        termLines.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
-      }, 3500);
 
       // ── SCROLL: PROGRESS + PARALLAX + ACTIVE NAV ──────────────────────────
       const progressBar = document.getElementById('progress-bar');

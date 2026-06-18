@@ -20,8 +20,8 @@ const { missions } = Astro.props;
 >
   <div
     data-parallax="0.04"
-    class="absolute top-[24px] left-[clamp(20px,7vw,80px)] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
-    style="font-size:clamp(120px,22vw,360px);"
+    class="absolute top-[24px] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
+    style="left:clamp(20px,7vw,80px); font-size:clamp(120px,22vw,360px);"
   >02</div>
 
   <div class="relative z-[1] max-w-[1200px] mx-auto">
@@ -38,7 +38,7 @@ const { missions } = Astro.props;
       Quatre projets réalisés durant le stage.
     </h2>
 
-    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(440px,1fr)); gap:24px;">
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(440px,100%),1fr)); gap:24px;">
       {missions.map((m, i) => (
         <button
           data-project-id={String(i)}
