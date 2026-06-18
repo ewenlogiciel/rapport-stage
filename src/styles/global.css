@@ -1,61 +1,68 @@
 @import "tailwindcss";
 
 @theme {
-  --color-accent: #3b82f6;
-  --color-accent-light: #60a5fa;
-  --color-canvas: #06060c;
-  --color-surface: #0b0b13;
-  --color-surface-hover: #0f0f1a;
-  --font-family-sans: 'DM Sans', system-ui, sans-serif;
-  --font-family-display: 'Plus Jakarta Sans', system-ui, sans-serif;
-  --font-family-mono: 'DM Mono', monospace;
+  --color-accent: #34d399;
+  --color-accent-light: #6ee7b7;
+  --color-canvas: #07070a;
+  --color-surface: #0c0c12;
+  --color-surface-hover: #14101c;
+  --font-family-sans: 'Space Grotesk', system-ui, sans-serif;
+  --font-family-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-family-mono: 'JetBrains Mono', monospace;
 }
 
 @layer base {
+  :root {
+    --acc-rgb: 52 211 153;
+  }
+
   html {
     scroll-behavior: smooth;
   }
 
   body {
     background-color: var(--color-canvas);
-    background-image: radial-gradient(rgba(255, 255, 255, 0.016) 1px, transparent 1px);
-    background-size: 28px 28px;
-    color: #e8e8f0;
+    color: #ECECF1;
   }
 
   ::selection {
-    background-color: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    background-color: rgb(var(--acc-rgb) / 0.22);
     color: var(--color-accent-light);
   }
 
   ::-webkit-scrollbar { width: 3px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb {
-    background: color-mix(in srgb, var(--color-accent) 50%, transparent);
+    background: rgb(var(--acc-rgb) / 0.5);
     border-radius: 99px;
   }
 }
 
-.font-display {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+@keyframes floaty {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, -34px, 0); }
 }
-.font-mono {
-  font-family: 'DM Mono', 'Courier New', monospace;
+@keyframes floaty2 {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(0, 28px, 0); }
+}
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
 }
 
 .reveal {
   opacity: 0;
   transform: translateY(28px);
   transition:
-    opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
-.reveal-delay-1 { transition-delay: 0.10s; }
-.reveal-delay-2 { transition-delay: 0.22s; }
-.reveal-delay-3 { transition-delay: 0.36s; }
-.reveal-delay-4 { transition-delay: 0.52s; }
-
+.reveal-delay-1 { transition-delay: 0.12s; }
+.reveal-delay-2 { transition-delay: 0.24s; }
+.reveal-delay-3 { transition-delay: 0.38s; }
+.reveal-delay-4 { transition-delay: 0.54s; }

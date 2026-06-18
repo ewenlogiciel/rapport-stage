@@ -1,0 +1,130 @@
+---
+interface ProjectDetail {
+  n: string;
+  title: string;
+  tags: string[];
+  intro: string;
+  context: string;
+  mission: string;
+  result: string;
+  nextLabel: string;
+}
+interface Props {
+  projects: ProjectDetail[];
+}
+const { projects } = Astro.props;
+---
+
+<div
+  id="project-overlay"
+  class="hidden fixed inset-0 z-[300] overflow-y-auto overflow-x-hidden"
+  style="background:#07070a; color:#ECECF1; font-family:'Space Grotesk',sans-serif;"
+>
+  <div
+    class="absolute top-[-12%] right-[-12%] w-[52vw] h-[52vw] rounded-full pointer-events-none"
+    style="background:radial-gradient(circle, rgb(var(--acc-rgb) / 0.12), transparent 64%); filter:blur(26px);"
+  ></div>
+
+  <div
+    class="sticky top-0 z-[5] flex items-center justify-between border-b border-white/[0.06]"
+    style="padding:18px clamp(20px,7vw,80px); backdrop-filter:blur(14px); background:linear-gradient(180deg, rgba(7,7,10,0.92), rgba(7,7,10,0.45));"
+  >
+    <button
+      id="overlay-close"
+      class="font-mono text-[13px] text-white flex items-center gap-[9px] cursor-pointer bg-transparent border-0 p-0"
+    >
+      <span class="text-accent">←</span> retour au rapport
+    </button>
+    <span id="overlay-counter" class="font-mono text-[12px] text-[#6a6a76]">projet 01 / 04</span>
+  </div>
+
+  <div class="relative max-w-[940px] mx-auto" style="padding:clamp(40px,7vh,84px) clamp(20px,7vw,80px) 40px;">
+
+    {projects.map((p, i) => (
+      <article id={`proj-detail-${i}`} class={i === 0 ? '' : 'hidden'} data-next-label={p.nextLabel}>
+
+        <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">// Projet {p.n}</div>
+        <h1
+          class="m-0 font-semibold leading-[1.05] tracking-[-0.02em]"
+          style="font-size:clamp(30px,4.4vw,52px);"
+        >{p.title}</h1>
+
+        <div class="flex flex-wrap gap-2 mt-[22px]">
+          {p.tags.map((t) => (
+            <span
+              class="font-mono text-[11px] text-[#cfcfd6] px-[11px] py-[5px] border rounded-full"
+              style="border-color:rgb(var(--acc-rgb) / 0.25); background:rgb(var(--acc-rgb) / 0.07);"
+            >{t}</span>
+          ))}
+        </div>
+
+        <p
+          class="mt-[26px] mb-10 text-[#d4d4dc] leading-[1.65]"
+          style="font-size:clamp(17px,1.6vw,21px); max-width:62ch;"
+        >{p.intro}</p>
+
+        <div
+          class="w-full flex items-center justify-center border border-dashed border-white/10 rounded-[14px] bg-white/[0.02]"
+          style="height:clamp(240px,44vw,460px);"
+        >
+          <span class="font-mono text-[12px] text-[#6a6a76]">// image à venir</span>
+        </div>
+
+        <div class="mt-14">
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-[14px]">Le contexte</div>
+          <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">
+            {p.context}
+            <span class="block mt-3 font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>
+          </p>
+        </div>
+
+        <div class="mt-14">
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-[14px]">Ma mission</div>
+          <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">
+            {p.mission}
+            <span class="block mt-3 font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>
+          </p>
+        </div>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-top:40px;">
+          <div
+            class="flex items-center justify-center border border-dashed border-white/10 rounded-[12px] bg-white/[0.02]"
+            style="height:clamp(200px,30vw,300px);"
+          >
+            <span class="font-mono text-[11px] text-[#6a6a76]">// image à venir</span>
+          </div>
+          <div
+            class="flex items-center justify-center border border-dashed border-white/10 rounded-[12px] bg-white/[0.02]"
+            style="height:clamp(200px,30vw,300px);"
+          >
+            <span class="font-mono text-[11px] text-[#6a6a76]">// image à venir</span>
+          </div>
+        </div>
+
+        <div class="mt-14">
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-[14px]">Le résultat</div>
+          <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">
+            {p.result}
+            <span class="block mt-3 font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>
+          </p>
+        </div>
+
+      </article>
+    ))}
+
+    <div class="mt-[72px] pt-7 border-t border-white/[0.08] flex items-center justify-between gap-4">
+      <button
+        id="overlay-prev"
+        class="font-mono text-[13px] text-[#8a8a96] hover:text-white transition-colors cursor-pointer bg-transparent border-0 p-0"
+      >← tous les projets</button>
+      <button
+        id="overlay-next"
+        class="text-right flex flex-col gap-1 cursor-pointer bg-transparent border-0 p-0"
+      >
+        <span class="font-mono text-[11px] text-[#6a6a76]">projet suivant →</span>
+        <span id="overlay-next-label" class="text-[16px] text-accent"></span>
+      </button>
+    </div>
+
+  </div>
+</div>

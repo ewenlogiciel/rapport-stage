@@ -1,0 +1,61 @@
+---
+interface Stat {
+  k: string;
+  v: string;
+}
+interface Props {
+  stats: Stat[];
+}
+const { stats } = Astro.props;
+---
+
+<section
+  id="entreprise"
+  class="relative z-[2] scroll-mt-[88px]"
+  style="padding:clamp(80px,12vh,150px) clamp(20px,7vw,80px);"
+>
+  <div
+    data-parallax="0.04"
+    class="absolute top-[24px] right-[clamp(20px,7vw,80px)] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
+    style="font-size:clamp(120px,22vw,360px);"
+  >01</div>
+
+  <div class="relative z-[1] max-w-[1200px] mx-auto">
+    <div class="flex items-center gap-4 mb-10 reveal">
+      <span class="font-mono text-[13px] text-accent">01</span>
+      <span class="w-12 h-px bg-white/20"></span>
+      <span class="font-mono text-[12px] tracking-[0.18em] uppercase text-[#8a8a96]">L'entreprise</span>
+    </div>
+
+    <h2
+      class="m-0 font-semibold leading-[1.02] tracking-[-0.02em] reveal"
+      style="max-width:18ch; font-size:clamp(32px,4.6vw,68px);"
+    >
+      Api Restauration — 18 semaines au pôle digital.
+    </h2>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:clamp(24px,4vw,56px); margin-top:48px;">
+      <p class="m-0 text-[#b4b4be] leading-[1.7] reveal" style="font-size:clamp(16px,1.3vw,19px);">
+        Api Restauration est un acteur majeur de la <span class="text-white">restauration collective</span>.
+        J'ai rejoint son pôle digital, au contact des équipes web et design, pour contribuer à plusieurs chantiers
+        d'interface et d'intégration menés en parallèle.
+        <br /><br />
+        <span class="font-mono text-[12.5px] text-[#6a6a76]">
+          [À REMPLIR — Présentation officielle : histoire, métiers, valeurs.]
+        </span>
+      </p>
+
+      <div
+        class="border border-white/[0.08] rounded-xl overflow-hidden reveal reveal-delay-1"
+        style="display:grid; grid-template-columns:1fr 1fr; gap:1px; background:rgba(255,255,255,0.08);"
+      >
+        {stats.map((s) => (
+          <div class="bg-surface" style="padding:26px 22px;">
+            <div class="font-mono text-[11px] tracking-[0.08em] uppercase text-[#6a6a76]">{s.k}</div>
+            <div class="mt-[10px] font-medium text-white" style="font-size:clamp(18px,1.6vw,24px);">{s.v}</div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>

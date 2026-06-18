@@ -1,82 +1,337 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import BaseHead from '../layouts/BaseHead.astro';
+import Nav from '../components/Nav.astro';
+import ScrollProgress from '../components/ScrollProgress.astro';
+import HeroSection from '../components/HeroSection.astro';
+import EntrepriseSection from '../components/EntrepriseSection.astro';
+import MissionsSection from '../components/MissionsSection.astro';
+import CompetencesSection from '../components/CompetencesSection.astro';
+import BilanSection from '../components/BilanSection.astro';
+import ProjectOverlay from '../components/ProjectOverlay.astro';
 
-const sections = [
-  { href: '/entreprise', label: 'Entreprise', num: '01', desc: 'Structure d\'accueil, équipe, contexte' },
-  { href: '/missions', label: 'Missions', num: '02', desc: 'Travaux réalisés et technologies mobilisées' },
-  { href: '/competences', label: 'Compétences', num: '03', desc: 'Savoir-faire techniques et transversaux' },
-  { href: '/bilan', label: 'Bilan', num: '04', desc: 'Retour critique et perspectives' },
+const heroMeta = [
+  { k: 'Étudiant',   v: 'Ewen Davanzo' },
+  { k: 'Entreprise', v: 'Api Restauration' },
+  { k: 'Période',    v: '16 mars → 17 juil. 2025' },
+  { k: 'Durée',      v: '18 semaines' },
+];
+
+const entrepriseStats = [
+  { k: "Chiffre d'affaires 2025",      v: '1,25 Md€' },
+  { k: 'Repas / jour',                 v: '1 260 000' },
+  { k: 'Collaborateurs (France)',      v: '11 200' },
+  { k: 'Collaborateurs (international)', v: '1 550' },
+];
+
+const missions = [
+  {
+    n: '01',
+    title: "Refonte de l'application de commande de repas",
+    tags: ['Vue 3', 'TypeScript', 'UI/UX', 'Design System'],
+    desc: "Application web interne permettant aux collaborateurs de commander leurs repas pour la semaine suivante. J'ai repensé les parcours et réintégré l'interface en m'appuyant sur le design system maison.",
+    result: 'Interface plus lisible, cohérente avec la charte, composants réutilisables.',
+    img: '// capture — appli de commande',
+  },
+  {
+    n: '02',
+    title: "Page d'attente du live « Passation de témoins »",
+    tags: ['Intégration', 'HTML/CSS', 'JavaScript', 'Animation'],
+    desc: "Un événement interne diffusé en live nécessitait une page d'attente. J'ai intégré l'habillage de marque et les états avant/pendant la diffusion pour offrir un point d'entrée soigné.",
+    result: "Landing d'attente animée, fidèle à l'identité de l'entreprise.",
+    img: "// capture — page d'attente",
+  },
+  {
+    n: '03',
+    title: 'Carte interactive Leaflet sur Webflow',
+    tags: ['Leaflet', 'Webflow', 'Custom code', 'Cartographie'],
+    desc: "Dans le cadre de la refonte du site corporate sur Webflow, j'ai intégré une carte Leaflet via du code custom : marqueurs personnalisés et points d'implantation interactifs.",
+    result: "Carte sur-mesure intégrée proprement dans l'écosystème Webflow.",
+    img: '// capture — carte Leaflet',
+  },
+  {
+    n: '04',
+    title: 'Design system en code',
+    tags: ['Storybook', 'Vue', 'TypeScript', 'Composants'],
+    desc: "J'ai développé des composants Vue typés en TypeScript et les ai documentés dans Storybook, pour offrir une bibliothèque vivante, testable et partagée entre les projets.",
+    result: "Socle de composants documentés, réutilisables d'un projet à l'autre.",
+    img: '// capture — Storybook',
+  },
+];
+
+const projectDetails = [
+  {
+    n: '01',
+    title: "Refonte de l'application de commande de repas",
+    tags: ['Vue 3', 'TypeScript', 'UI/UX', 'Design System'],
+    intro: "Le chantier principal du stage : remettre à plat l'interface que les collaborateurs utilisent chaque semaine pour réserver leurs repas.",
+    context: "L'application permettait déjà de commander, mais l'expérience gagnait à être clarifiée : hiérarchie de l'information, lisibilité des menus et fiabilité de la saisie hebdomadaire.",
+    mission: "J'ai repris les parcours de commande et réintégré l'interface en m'appuyant sur le design system maison (Vue 3, TypeScript), pour des composants cohérents et faciles à maintenir.",
+    result: "Une interface plus claire, alignée sur la charte, et un code plus simple à faire évoluer.",
+    nextLabel: "Page d'attente du live",
+  },
+  {
+    n: '02',
+    title: "Page d'attente du live « Passation de témoins »",
+    tags: ['Intégration', 'HTML/CSS', 'JavaScript', 'Animation'],
+    intro: "Soigner l'arrivée des spectateurs sur le live « Passation de témoins » avec une page d'attente à l'image de l'entreprise.",
+    context: "Un événement interne diffusé en direct avait besoin d'un sas d'attente : tenir les spectateurs avant le démarrage, sans rupture avec l'identité de marque.",
+    mission: "J'ai intégré la page d'attente — habillage de marque, compte à rebours et états avant / pendant le live — pour offrir un point d'entrée propre jusqu'au lancement.",
+    result: "Une page d'attente animée et fidèle à la charte, prête pour le jour J.",
+    nextLabel: "Carte Leaflet sur Webflow",
+  },
+  {
+    n: '03',
+    title: 'Carte interactive Leaflet sur Webflow',
+    tags: ['Leaflet', 'Webflow', 'Custom code', 'Cartographie'],
+    intro: "Donner à voir les implantations de l'entreprise sur une carte interactive, intégrée à la refonte du site corporate.",
+    context: "Le site corporate était refondu sur Webflow ; il fallait y intégrer une carte des implantations, cohérente avec le design du site.",
+    mission: "J'ai intégré une carte Leaflet via du code custom dans Webflow : marqueurs personnalisés, style sur-mesure et points d'implantation interactifs.",
+    result: "Une carte sur-mesure, fluide et intégrée proprement dans l'écosystème Webflow.",
+    nextLabel: "Design system en code",
+  },
+  {
+    n: '04',
+    title: 'Design system en code',
+    tags: ['Storybook', 'Vue', 'TypeScript', 'Composants'],
+    intro: "Transformer le design system en une bibliothèque de composants vivante, documentée et réutilisable.",
+    context: "Le design system existait côté design ; l'enjeu était de le traduire en composants front fiables, documentés et partagés entre les projets.",
+    mission: "J'ai développé des composants Vue typés en TypeScript et les ai documentés dans Storybook — variantes, états et exemples d'usage à l'appui.",
+    result: "Un socle de composants documentés et testables, réutilisé d'un projet à l'autre.",
+    nextLabel: "Refonte de l'application de commande",
+  },
+];
+
+const competences = [
+  {
+    n: 'C1', name: 'Comprendre', sub: 'les écosystèmes numériques',
+    desc: "Analyse de l'existant, des besoins métiers et des contraintes techniques avant chaque intégration.",
+    link: "Audit de l'appli & du site Webflow",
+  },
+  {
+    n: 'C2', name: 'Concevoir', sub: 'une production multimédia',
+    desc: "Conception des parcours et de l'interface en cohérence avec le design system de l'entreprise.",
+    link: "Refonte de l'appli de commande",
+  },
+  {
+    n: 'C3', name: 'Exprimer', sub: 'une intention créative',
+    desc: "Mise en forme de l'identité de marque sur la page d'attente du live et les composants.",
+    link: "Page d'attente « Passation de témoins »",
+  },
+  {
+    n: 'C4', name: 'Développer', sub: 'pour le web et les médias',
+    desc: 'Intégration front (Vue, TypeScript), code custom Leaflet et composants documentés dans Storybook.',
+    link: 'Design system & carte Leaflet',
+  },
+  {
+    n: 'C5', name: 'Entreprendre', sub: 'dans un cadre professionnel',
+    desc: 'Autonomie, gestion de plusieurs projets en parallèle et collaboration avec les équipes.',
+    link: '4 projets menés en 18 semaines',
+  },
+];
+
+const takeaways = [
+  { k: 'Technique', v: "Vue, TypeScript et Storybook au service d'un design system vivant." },
+  { k: 'Méthode',   v: 'Mener plusieurs projets de front, prioriser et livrer proprement.' },
+  { k: 'Posture',   v: 'Dialoguer avec les équipes web et design, gagner en autonomie.' },
 ];
 ---
 
-<Layout title="Accueil">
-  <!-- Hero -->
-  <section class="relative min-h-screen flex flex-col justify-center max-w-5xl mx-auto px-6 pt-14">
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <BaseHead title="Rapport de Stage — Ewen Davanzo" />
+  </head>
+  <body class="font-sans antialiased overflow-x-hidden">
 
-    <div class="absolute top-1/4 -left-40 w-[700px] h-[500px] bg-accent/5 rounded-full blur-[160px] pointer-events-none" aria-hidden="true"></div>
-
-    <div class="relative z-10">
-      <p class="font-mono text-[10px] text-accent/50 tracking-[0.25em] uppercase mb-8 reveal">
-        BUT MMI · Développement Web · 2025 — 2026
-      </p>
-
-      <h1 class="font-display font-black uppercase leading-[0.85] text-white mb-10 reveal reveal-delay-1 text-[5rem] sm:text-[7rem] md:text-[9.5rem] lg:text-[11.5rem]">
-        Rapport<br/>
-        <span class="text-accent">de stage</span>
-      </h1>
-
-      <div class="flex items-start gap-5 mb-12 reveal reveal-delay-2">
-        <div class="w-px h-12 bg-accent/30 mt-0.5 flex-shrink-0"></div>
-        <div>
-          <p class="text-neutral-300 text-base leading-relaxed">
-            Ewen D'Avanzo — Stage chez <span class="text-white font-medium">Api Restauration</span>
-          </p>
-          <p class="font-mono text-[10px] text-neutral-600 mt-1 tracking-wide uppercase">16 mars → 17 juillet 2025</p>
-        </div>
-      </div>
-
-      <a
-        href="/entreprise"
-        class="inline-flex items-center gap-3 px-5 py-2.5 border border-accent/30 hover:border-accent/70 bg-accent/5 hover:bg-accent/10 text-accent-light hover:text-white rounded-lg font-mono text-[10px] uppercase tracking-[0.15em] transition-all duration-300 reveal reveal-delay-3"
-      >
-        Commencer la lecture
-        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-          <path d="M2 6h8M6.5 2.5L10 6l-3.5 3.5" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </a>
+    <!-- ambient background -->
+    <div class="fixed inset-0 z-0 pointer-events-none">
+      <div
+        class="absolute inset-0"
+        style="background-image:linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px); background-size:64px 64px; -webkit-mask-image:radial-gradient(ellipse 100% 70% at 50% 30%, #000 30%, transparent 80%); mask-image:radial-gradient(ellipse 100% 70% at 50% 30%, #000 30%, transparent 80%);"
+      ></div>
+      <div
+        class="absolute rounded-full"
+        style="top:-12%; left:-8%; width:46vw; height:46vw; background:radial-gradient(circle, rgb(var(--acc-rgb) / 0.20), transparent 62%); filter:blur(20px); animation:floaty 13s ease-in-out infinite;"
+      ></div>
+      <div
+        class="absolute rounded-full"
+        style="bottom:-18%; right:-10%; width:52vw; height:52vw; background:radial-gradient(circle, rgb(var(--acc-rgb) / 0.13), transparent 64%); filter:blur(24px); animation:floaty2 17s ease-in-out infinite;"
+      ></div>
     </div>
 
-    <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 reveal reveal-delay-4">
-      <span class="font-mono text-[9px] text-neutral-700 tracking-[0.3em] uppercase">Scroll</span>
-      <div class="w-px h-10 bg-gradient-to-b from-neutral-700 to-transparent"></div>
-    </div>
-  </section>
+    <ScrollProgress />
+    <Nav />
 
-  <!-- Sommaire -->
-  <section class="max-w-5xl mx-auto px-6 pb-28">
-    <p class="font-mono text-[10px] text-accent/40 tracking-[0.2em] uppercase mb-8 reveal">Sommaire</p>
-    <div class="grid md:grid-cols-2 gap-3">
-      {sections.map(({ href, label, num, desc }, i) => (
-        <a
-          href={href}
-          class={`reveal reveal-delay-${i + 1} group relative flex flex-col p-7 rounded-xl border border-white/5 bg-surface hover:bg-white/[0.05] hover:border-accent/30 transition-all duration-300 overflow-hidden`}
-        >
-          <span aria-hidden="true" class="absolute right-2 top-0 font-display font-extrabold text-[6rem] text-white/[0.03] leading-none select-none pointer-events-none">{num}</span>
+    <main class="relative z-[2]">
+      <HeroSection heroMeta={heroMeta} />
+      <EntrepriseSection stats={entrepriseStats} />
+      <MissionsSection missions={missions} />
+      <CompetencesSection competences={competences} />
+      <BilanSection takeaways={takeaways} />
+    </main>
 
-          <span class="font-mono text-[10px] text-accent/40 tracking-[0.2em] uppercase mb-5">{num}</span>
-          <h2 class="font-display font-extrabold text-2xl tracking-tight text-white mb-2 group-hover:text-accent transition-colors duration-300">{label}</h2>
-          <p class="text-sm text-neutral-500 leading-relaxed">{desc}</p>
-          <div class="mt-auto pt-6 font-mono text-[10px] text-neutral-700 group-hover:text-accent/60 uppercase tracking-[0.15em] transition-colors duration-300">
-            Lire →
-          </div>
-        </a>
-      ))}
-    </div>
-  </section>
-</Layout>
+    <footer
+      class="relative z-[2] border-t border-white/[0.08]"
+      style="padding:36px clamp(20px,7vw,80px); display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:12px; color:#6a6a76;"
+    >
+      <span>© 2025 — Ewen Davanzo · BUT MMI</span>
+      <span>Rapport de stage · Api Restauration</span>
+      <a href="#accueil" class="text-accent no-underline hover:underline">↑ retour en haut</a>
+    </footer>
 
-<style>
-  section {
-    position: relative;
-  }
-</style>
+    <ProjectOverlay projects={projectDetails} />
+
+    <script>
+      // ── SCROLL REVEAL ──────────────────────────────────────────────────────
+      const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('visible');
+          revealObserver.unobserve(e.target);
+        });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+      // ── TERMINAL LINES ─────────────────────────────────────────────────────
+      const termLines = Array.from(document.querySelectorAll<HTMLElement>('[data-termline]'));
+      termLines.forEach(el => {
+        el.style.opacity = '0';
+        el.style.transform = 'translateX(-8px)';
+        el.style.transition = 'opacity 0.25s ease, transform 0.25s ease';
+      });
+      termLines.forEach((el, i) => {
+        setTimeout(() => { el.style.opacity = '1'; el.style.transform = 'none'; }, 350 + i * 180);
+      });
+      setTimeout(() => {
+        termLines.forEach(el => { el.style.opacity = '1'; el.style.transform = 'none'; });
+      }, 3500);
+
+      // ── SCROLL: PROGRESS + PARALLAX + ACTIVE NAV ──────────────────────────
+      const progressBar = document.getElementById('progress-bar');
+      const parallaxEls = Array.from(document.querySelectorAll<HTMLElement>('[data-parallax]'));
+      const pageSections = Array.from(document.querySelectorAll<HTMLElement>('section[id]'));
+      const navLinks = Array.from(document.querySelectorAll<HTMLElement>('[data-nav-id]'));
+
+      function setActiveNav(id: string) {
+        navLinks.forEach(a => {
+          const isActive = a.dataset.navId === id;
+          a.style.color = isActive ? '#ECECF1' : '';
+          const underline = a.querySelector<HTMLElement>('.nav-underline');
+          if (underline) underline.style.opacity = isActive ? '1' : '0';
+        });
+      }
+
+      function onScroll() {
+        const scrollY = window.scrollY;
+        const h = document.documentElement.scrollHeight - window.innerHeight;
+        if (progressBar) progressBar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`;
+        parallaxEls.forEach(el => {
+          el.style.transform = `translate3d(0, ${scrollY * parseFloat(el.dataset.parallax ?? '0')}px, 0)`;
+        });
+        if (scrollY >= 80) {
+          const probe = scrollY + window.innerHeight * 0.35;
+          let current = pageSections[0]?.id ?? 'accueil';
+          pageSections.forEach(s => { if (s.offsetTop <= probe) current = s.id; });
+          setActiveNav(current);
+        }
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onScroll, { passive: true });
+      setTimeout(onScroll, 250);
+
+      // ── PROJECT OVERLAY ────────────────────────────────────────────────────
+      const overlay = document.getElementById('project-overlay')!;
+      const overlayCounter = document.getElementById('overlay-counter');
+      const overlayNextLabel = document.getElementById('overlay-next-label');
+      let currentProjectIndex = 0;
+
+      function openProject(i: number) {
+        currentProjectIndex = i;
+        document.querySelectorAll('[id^="proj-detail-"]').forEach((el, j) => {
+          el.classList.toggle('hidden', j !== i);
+        });
+        if (overlayCounter) overlayCounter.textContent = `projet 0${i + 1} / 04`;
+        const article = document.getElementById(`proj-detail-${i}`);
+        if (overlayNextLabel && article instanceof HTMLElement) {
+          overlayNextLabel.textContent = article.dataset.nextLabel ?? '';
+        }
+        overlay.classList.remove('hidden');
+        overlay.scrollTop = 0;
+        document.body.style.overflow = 'hidden';
+        history.pushState(null, '', `#projet-${i + 1}`);
+      }
+
+      function closeProject() {
+        overlay.classList.add('hidden');
+        document.body.style.overflow = '';
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+
+      document.addEventListener('click', e => {
+        const card = (e.target as HTMLElement).closest<HTMLElement>('[data-project-id]');
+        if (card) openProject(Number(card.dataset.projectId));
+      });
+
+      document.getElementById('overlay-close')?.addEventListener('click', closeProject);
+      document.getElementById('overlay-prev')?.addEventListener('click', closeProject);
+      document.getElementById('overlay-next')?.addEventListener('click', () => {
+        openProject((currentProjectIndex + 1) % 4);
+      });
+
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && !overlay.classList.contains('hidden')) closeProject();
+      });
+
+      function syncFromHash() {
+        const m = /projet-(\d)/.exec(location.hash);
+        if (m) openProject(Math.max(0, Math.min(3, parseInt(m[1], 10) - 1)));
+      }
+      syncFromHash();
+      window.addEventListener('hashchange', () => {
+        if (!/projet-\d/.test(location.hash)) closeProject();
+      });
+      window.addEventListener('popstate', () => {
+        if (!/projet-\d/.test(location.hash)) {
+          overlay.classList.add('hidden');
+          document.body.style.overflow = '';
+        }
+      });
+
+      // ── MOBILE MENU ────────────────────────────────────────────────────────
+      const menuToggle = document.getElementById('menu-toggle');
+      const mobileMenu = document.getElementById('mobile-menu');
+      menuToggle?.addEventListener('click', () => mobileMenu?.classList.toggle('hidden'));
+      mobileMenu?.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => mobileMenu?.classList.add('hidden'));
+      });
+
+      // ── CUSTOM CURSOR ──────────────────────────────────────────────────────
+      if (!window.matchMedia('(hover: none)').matches) {
+        document.body.style.cursor = 'none';
+        const dot = document.getElementById('cursor-dot')!;
+        const ring = document.getElementById('cursor-ring')!;
+        let mx = 0, my = 0, rx = 0, ry = 0, hovered = false;
+
+        window.addEventListener('mousemove', e => {
+          mx = e.clientX; my = e.clientY;
+          dot.style.opacity = '1';
+          ring.style.opacity = '1';
+        });
+        window.addEventListener('mouseover', e => {
+          hovered = !!(e.target as HTMLElement).closest?.('a, button, [data-cursor]');
+        });
+
+        (function rafLoop() {
+          rx += (mx - rx) * 0.18;
+          ry += (my - ry) * 0.18;
+          dot.style.transform = `translate3d(${mx - 3}px, ${my - 3}px, 0)`;
+          ring.style.transform = `translate3d(${rx - 16}px, ${ry - 16}px, 0) scale(${hovered ? 1.7 : 1})`;
+          ring.style.borderColor = hovered ? 'rgb(52 211 153)' : 'rgb(52 211 153 / 0.5)';
+          ring.style.transition = 'transform 0.15s ease, border-color 0.2s ease';
+          requestAnimationFrame(rafLoop);
+        })();
+      }
+    </script>
+
+  </body>
+</html>

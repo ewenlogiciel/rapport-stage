@@ -1,0 +1,62 @@
+---
+interface Competence {
+  n: string;
+  name: string;
+  sub: string;
+  desc: string;
+  link: string;
+}
+interface Props {
+  competences: Competence[];
+}
+const { competences } = Astro.props;
+---
+
+<section
+  id="competences"
+  class="relative z-[2] scroll-mt-[88px]"
+  style="padding:clamp(80px,12vh,150px) clamp(20px,7vw,80px);"
+>
+  <div
+    data-parallax="0.04"
+    class="absolute top-[24px] right-[clamp(20px,7vw,80px)] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
+    style="font-size:clamp(120px,22vw,360px);"
+  >03</div>
+
+  <div class="relative z-[1] max-w-[1200px] mx-auto">
+    <div class="flex items-center gap-4 mb-10 reveal">
+      <span class="font-mono text-[13px] text-accent">03</span>
+      <span class="w-12 h-px bg-white/20"></span>
+      <span class="font-mono text-[12px] tracking-[0.18em] uppercase text-[#8a8a96]">Compétences acquises · Référentiel MMI</span>
+    </div>
+
+    <h2
+      class="m-0 mb-[52px] font-semibold leading-[1.02] tracking-[-0.02em] reveal"
+      style="max-width:18ch; font-size:clamp(32px,4.6vw,68px);"
+    >
+      Ce que le stage a fait grandir.
+    </h2>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(300px,1fr)); gap:18px;">
+      {competences.map((c) => (
+        <div
+          class="reveal flex flex-col border border-white/[0.08] rounded-[14px] transition-all duration-300 hover:border-accent/40"
+          style="padding:26px 24px 24px; background:rgba(13,13,18,0.6);"
+        >
+          <div class="flex items-baseline justify-between">
+            <span
+              class="font-mono text-[12px] text-accent border rounded-[6px] px-2 py-[3px]"
+              style="border-color:rgb(var(--acc-rgb) / 0.3);"
+            >{c.n}</span>
+          </div>
+          <h3 class="m-0 mt-[18px] mb-[2px] text-[26px] font-semibold tracking-[-0.01em]">{c.name}</h3>
+          <div class="font-mono text-[12px] text-[#7a7a86]">{c.sub}</div>
+          <p class="mt-4 mb-[18px] text-[14px] leading-[1.6] text-[#a3a3ad] flex-1">{c.desc}</p>
+          <div class="pt-[14px] border-t border-white/[0.07] font-mono text-[11.5px] text-[#cfcfd6] flex gap-2 items-start">
+            <span class="text-accent">↳</span>{c.link}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

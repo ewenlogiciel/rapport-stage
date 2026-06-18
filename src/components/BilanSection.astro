@@ -1,0 +1,59 @@
+---
+interface Takeaway {
+  k: string;
+  v: string;
+}
+interface Props {
+  takeaways: Takeaway[];
+}
+const { takeaways } = Astro.props;
+---
+
+<section
+  id="bilan"
+  class="relative z-[2] scroll-mt-[88px]"
+  style="padding:clamp(80px,12vh,150px) clamp(20px,7vw,80px) clamp(60px,8vh,100px);"
+>
+  <div
+    data-parallax="0.04"
+    class="absolute top-[24px] left-[clamp(20px,7vw,80px)] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
+    style="font-size:clamp(120px,22vw,360px);"
+  >04</div>
+
+  <div class="relative z-[1] max-w-[1200px] mx-auto">
+    <div class="flex items-center gap-4 mb-10 reveal">
+      <span class="font-mono text-[13px] text-accent">04</span>
+      <span class="w-12 h-px bg-white/20"></span>
+      <span class="font-mono text-[12px] tracking-[0.18em] uppercase text-[#8a8a96]">Bilan & conclusion</span>
+    </div>
+
+    <h2
+      class="m-0 font-semibold leading-[1.02] tracking-[-0.02em] reveal"
+      style="max-width:20ch; font-size:clamp(32px,4.6vw,68px);"
+    >
+      Un stage qui confirme une direction.
+    </h2>
+
+    <p
+      class="mt-9 text-[#b4b4be] leading-[1.7] reveal"
+      style="max-width:62ch; font-size:clamp(17px,1.5vw,22px);"
+    >
+      Mener quatre projets en parallèle m'a appris à <span class="text-white">prioriser, m'organiser et dialoguer</span>
+      avec des équipes aux attentes différentes. J'en ressors avec une vision plus claire de l'intégration front
+      au sein d'un design system, et l'envie de continuer dans cette voie.
+      <br /><br />
+      <span class="font-mono text-[13px] text-[#6a6a76]">
+        [À REMPLIR — Personnalise ce bilan avec ton ressenti, tes difficultés et tes perspectives.]
+      </span>
+    </p>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:18px; margin-top:48px;">
+      {takeaways.map((t) => (
+        <div class="reveal" style="border-left:2px solid var(--color-accent); padding:6px 0 6px 22px;">
+          <div class="font-mono text-[11px] tracking-[0.1em] uppercase text-accent mb-3">{t.k}</div>
+          <div class="text-[16px] leading-[1.55] text-[#cfcfd6]">{t.v}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
