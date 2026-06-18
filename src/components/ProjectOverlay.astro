@@ -1,6 +1,15 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
+interface StackItem   { name: string; role: string; }
+interface PlanItem    { name: string; desc: string; }
+interface Feature     { title: string; desc: string; isFreemium?: boolean; }
+interface CIItem      { n: string; title: string; desc: string; }
+
 interface ProjectDetail {
   n: string;
+  group: 'stage' | 'but';
   title: string;
   tags: string[];
   intro: string;
@@ -8,6 +17,14 @@ interface ProjectDetail {
   mission: string;
   result: string;
   nextLabel: string;
+  stack?: StackItem[];
+  plans?: PlanItem[];
+  featuresIntro?: string;
+  features?: Feature[];
+  ciText?: string;
+  ciItems?: CIItem[];
+  heroImage?: ImageMetadata;
+  secondImage?: ImageMetadata;
 }
 interface Props {
   projects: ProjectDetail[];
@@ -33,24 +50,29 @@ const { projects } = Astro.props;
       id="overlay-close"
       class="font-mono text-[13px] text-white flex items-center gap-[9px] cursor-pointer bg-transparent border-0 p-0"
     >
-      <span class="text-accent">←</span> retour au rapport
+      <span class="text-accent">←</span> retour au portfolio
     </button>
     <span id="overlay-counter" class="font-mono text-[12px] text-[#6a6a76]">projet 01 / 04</span>
   </div>
 
   <div class="relative max-w-[940px] mx-auto" style="padding:clamp(40px,7vh,84px) clamp(20px,7vw,80px) 40px;">
 
-    {projects.map((p, i) => (
-      <article id={`proj-detail-${i}`} class={i === 0 ? '' : 'hidden'} data-next-label={p.nextLabel}>
+    {projects.map((p, i) => p.stack ? (
 
-        <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">// Projet {p.n}</div>
-        <h1
-          class="m-0 font-semibold leading-[1.05] tracking-[-0.02em]"
-          style="font-size:clamp(30px,4.4vw,52px);"
-        >{p.title}</h1>
+      <article id={`proj-detail-${i}`} class={i === 0 ? '' : 'hidden'} data-next-label={p.nextLabel} data-group={p.group}>
+
+        <div class="flex items-center gap-3 mb-5">
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent">// Projet BUT {p.n}</div>
+          <span
+            class="font-mono text-[10px] tracking-[0.1em] uppercase border border-accent/30 rounded-full px-2 py-[3px]"
+            style="color:var(--color-accent); background:rgb(var(--acc-rgb) / 0.07);"
+          >BUT MMI · 2025/2026</span>
+        </div>
+
+        <h1 class="m-0 font-semibold leading-[1.05] tracking-[-0.02em]" style="font-size:clamp(30px,4.4vw,52px);">{p.title}</h1>
 
         <div class="flex flex-wrap gap-2 mt-[22px]">
-          {p.tags.map((t) => (
+          {p.tags.map(t => (
             <span
               class="font-mono text-[11px] text-[#cfcfd6] px-[11px] py-[5px] border rounded-full"
               style="border-color:rgb(var(--acc-rgb) / 0.25); background:rgb(var(--acc-rgb) / 0.07);"
@@ -58,10 +80,127 @@ const { projects } = Astro.props;
           ))}
         </div>
 
-        <p
-          class="mt-[26px] mb-10 text-[#d4d4dc] leading-[1.65]"
-          style="font-size:clamp(17px,1.6vw,21px); max-width:62ch;"
-        >{p.intro}</p>
+        <p class="mt-[26px] mb-10 text-[#d4d4dc] leading-[1.65]" style="font-size:clamp(17px,1.6vw,21px); max-width:62ch;">{p.intro}</p>
+
+        {p.heroImage && (
+          <div class="mb-14">
+            <Image
+              src={p.heroImage}
+              alt={`Page d'accueil — ${p.title}`}
+              class="w-full rounded-[14px] border border-white/[0.1]"
+            />
+            <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// Page d'accueil</p>
+          </div>
+        )}
+
+        <div class="mb-14">
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-4">Stack technique</div>
+          <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(148px,100%),1fr)); gap:12px;">
+            {p.stack.map(s => (
+              <div
+                class="rounded-[10px] border border-white/[0.08]"
+                style="background:rgba(255,255,255,0.03); padding:16px 18px;"
+              >
+                <div class="font-semibold text-[15px] text-white">{s.name}</div>
+                <div class="font-mono text-[11px] text-[#6a6a76] mt-1 leading-[1.5]">{s.role}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {(p.features || p.featuresIntro) && (
+          <div class="mb-14">
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">Fonctionnalités</div>
+            {p.featuresIntro && (
+              <p class="m-0 mb-8 text-[#b4b4be] leading-[1.75]" style="font-size:15.5px; max-width:68ch;">{p.featuresIntro}</p>
+            )}
+            {p.features?.map((f, fi) => (
+              <div class={`pl-5 ${fi < (p.features?.length ?? 0) - 1 ? 'mb-9' : ''}`} style="border-left:2px solid rgb(var(--acc-rgb) / 0.3);">
+                <h3 class="m-0 mb-2 text-[17px] font-semibold">{f.title}</h3>
+                <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:15px; max-width:66ch;">{f.desc}</p>
+                {f.isFreemium && p.plans && (
+                  <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:12px; margin-top:20px;">
+                    {p.plans.map(plan => (
+                      <div style="background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); border-top:2.5px solid rgb(var(--acc-rgb) / 0.65); border-radius:10px; padding:18px 16px;">
+                        <div class="font-mono text-[10px] tracking-[0.15em] uppercase text-[#6a6a76]">{plan.name}</div>
+                        <div class="mt-2 text-[14px] text-[#b4b4be] leading-[1.55]">{plan.desc}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+
+        {p.secondImage && (
+          <div class="mb-14">
+            <Image
+              src={p.secondImage}
+              alt={`Outils disponibles — ${p.title}`}
+              class="w-full rounded-[14px] border border-white/[0.1]"
+            />
+            <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// Page des outils disponibles</p>
+          </div>
+        )}
+
+        {(p.ciText || p.ciItems) && (
+          <div class="mb-14">
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-4">Qualité logicielle & CI</div>
+            {p.ciText && (
+              <p class="m-0 mb-7 text-[#b4b4be] leading-[1.75]" style="font-size:16px; max-width:68ch;">{p.ciText}</p>
+            )}
+            {p.ciItems && (
+              <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(240px,100%),1fr)); gap:14px;">
+                {p.ciItems.map(item => (
+                  <div class="rounded-[10px] border border-white/[0.08]" style="background:rgba(255,255,255,0.03); padding:18px;">
+                    <div class="font-mono text-[10px] tracking-[0.12em] uppercase text-accent mb-2">{item.n}</div>
+                    <div class="font-semibold text-[14px] mb-2">{item.title}</div>
+                    <div class="text-[13px] text-[#8a8a96] leading-[1.65]">{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        )}
+
+        {p.result && (
+          <div>
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-4">Le résultat</div>
+            <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">{p.result}</p>
+          </div>
+        )}
+
+      </article>
+
+    ) : (
+
+      <article id={`proj-detail-${i}`} class={i === 0 ? '' : 'hidden'} data-next-label={p.nextLabel} data-group={p.group}>
+
+        <div class="flex items-center gap-3 mb-5">
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent">
+            {p.group === 'but' ? '// Projet BUT' : '// Projet'} {p.n}
+          </div>
+          {p.group === 'but' && (
+            <span
+              class="font-mono text-[10px] tracking-[0.1em] uppercase border border-accent/30 rounded-full px-2 py-[3px]"
+              style="color:var(--color-accent); background:rgb(var(--acc-rgb) / 0.07);"
+            >BUT MMI · 2025/2026</span>
+          )}
+        </div>
+
+        <h1 class="m-0 font-semibold leading-[1.05] tracking-[-0.02em]" style="font-size:clamp(30px,4.4vw,52px);">{p.title}</h1>
+
+        <div class="flex flex-wrap gap-2 mt-[22px]">
+          {p.tags.map(t => (
+            <span
+              class="font-mono text-[11px] text-[#cfcfd6] px-[11px] py-[5px] border rounded-full"
+              style="border-color:rgb(var(--acc-rgb) / 0.25); background:rgb(var(--acc-rgb) / 0.07);"
+            >{t}</span>
+          ))}
+        </div>
+
+        <p class="mt-[26px] mb-10 text-[#d4d4dc] leading-[1.65]" style="font-size:clamp(17px,1.6vw,21px); max-width:62ch;">{p.intro}</p>
 
         <div
           class="w-full flex items-center justify-center border border-dashed border-white/10 rounded-[14px] bg-white/[0.02]"
@@ -79,14 +218,16 @@ const { projects } = Astro.props;
         </div>
 
         <div class="mt-14">
-          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-[14px]">Ma mission</div>
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-[14px]">
+            {p.group === 'but' ? 'Le projet' : 'Ma mission'}
+          </div>
           <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">
             {p.mission}
             <span class="block mt-3 font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>
           </p>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:18px; margin-top:40px;">
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(220px,100%),1fr)); gap:18px; margin-top:40px;">
           <div
             class="flex items-center justify-center border border-dashed border-white/10 rounded-[12px] bg-white/[0.02]"
             style="height:clamp(200px,30vw,300px);"
@@ -110,6 +251,7 @@ const { projects } = Astro.props;
         </div>
 
       </article>
+
     ))}
 
     <div class="mt-[72px] pt-7 border-t border-white/[0.08] flex items-center justify-between gap-4">

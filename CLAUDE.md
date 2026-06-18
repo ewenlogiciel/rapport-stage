@@ -76,3 +76,5 @@ Pour changer la couleur d'accent du site : modifier `--color-accent` et `--color
 
 Le contenu du rapport (textes, dates, nom entreprise, missions) sera renseigné progressivement.
 Ne pas inventer de contenu — utiliser des placeholders explicites du type `[À REMPLIR]`.
+
+Quand un texte est fourni pour un projet ou une section : le reproduire **exactement**, mot pour mot. Il est permis de le **découper** en plusieurs blocs visuels (intro, contexte, fonctionnalités, etc.) selon ce qui rend le mieux, mais **jamais le reformuler, le résumer ou le réécrire**.

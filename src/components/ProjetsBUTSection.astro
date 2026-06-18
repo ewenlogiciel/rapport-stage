@@ -1,0 +1,80 @@
+---
+interface ProjetBUT {
+  n: string;
+  title: string;
+  tags: string[];
+  desc: string;
+  img: string;
+  projectIndex: number;
+}
+interface Props {
+  projets: ProjetBUT[];
+}
+const { projets } = Astro.props;
+---
+
+<section
+  id="projets"
+  class="relative z-[2] scroll-mt-[88px]"
+  style="padding:clamp(80px,12vh,150px) clamp(20px,7vw,80px);"
+>
+  <div
+    data-parallax="0.04"
+    class="absolute top-[24px] font-bold text-white/[0.02] leading-none pointer-events-none z-0"
+    style="left:clamp(20px,7vw,80px); font-size:clamp(120px,22vw,360px);"
+  >03</div>
+
+  <div class="relative z-[1] max-w-[1200px] mx-auto">
+    <div class="flex items-center gap-4 mb-10 reveal">
+      <span class="font-mono text-[13px] text-accent">03</span>
+      <span class="w-12 h-px bg-white/20"></span>
+      <span class="font-mono text-[12px] tracking-[0.18em] uppercase text-[#8a8a96]">Projets universitaires · BUT MMI 2025/2026</span>
+    </div>
+
+    <h2
+      class="m-0 mb-[52px] font-semibold leading-[1.02] tracking-[-0.02em] reveal"
+      style="max-width:22ch; font-size:clamp(32px,4.6vw,68px);"
+    >
+      Quatre projets conduits au cours de l'année universitaire.
+    </h2>
+
+    <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(440px,100%),1fr)); gap:24px;">
+      {projets.map((p) => (
+        <button
+          data-project-id={String(p.projectIndex)}
+          class="reveal text-left flex flex-col border border-white/[0.08] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-accent/40 hover:-translate-y-[3px]"
+          style="appearance:none; background:rgba(13,13,18,0.7);"
+        >
+          <div
+            class="relative flex items-center justify-center border-b border-white/[0.07]"
+            style="height:160px; background:repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px);"
+          >
+            <span class="absolute top-[14px] left-4 font-mono text-[13px] text-accent">{p.n}</span>
+            <span
+              class="absolute top-[13px] right-4 font-mono text-[10px] tracking-[0.12em] uppercase border border-accent/30 rounded-full px-2 py-[3px]"
+              style="color:var(--color-accent); background:rgb(var(--acc-rgb) / 0.07);"
+            >BUT MMI</span>
+            <span class="font-mono text-[12px] text-[#5a5a66]">{p.img}</span>
+          </div>
+          <div class="flex flex-col flex-1 p-6">
+            <h3 class="m-0 text-[22px] font-semibold leading-[1.2] tracking-[-0.01em]">{p.title}</h3>
+            <div class="flex flex-wrap gap-[7px] my-4">
+              {p.tags.map((t) => (
+                <span
+                  class="font-mono text-[11px] text-[#cfcfd6] px-[10px] py-1 border rounded-full"
+                  style="border-color:rgb(var(--acc-rgb) / 0.25); background:rgb(var(--acc-rgb) / 0.07);"
+                >{t}</span>
+              ))}
+            </div>
+            <p class="m-0 mb-4 text-[14.5px] leading-[1.65] text-[#a3a3ad]">{p.desc}</p>
+            <div class="mt-auto pt-4 border-t border-white/[0.07] flex items-center justify-end">
+              <span class="flex items-center gap-2 font-mono text-[12px] text-accent whitespace-nowrap">
+                voir le projet →
+              </span>
+            </div>
+          </div>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
