@@ -11,6 +11,8 @@ import BilanSection from '../components/BilanSection.astro';
 import ProjectOverlay from '../components/ProjectOverlay.astro';
 import polypdfAccueil from '../assets/pojets-universitaires/polypdf/polypdf-accauil.png';
 import polypdfOutils from '../assets/pojets-universitaires/polypdf/polypdf-outils.png';
+import civerseAccueil from '../assets/pojets-universitaires/cineverse/cineverse-accueil.png';
+import civerseFilm from '../assets/pojets-universitaires/cineverse/cineverse-film.png';
 
 const heroMeta = [
   { k: 'Étudiant',   v: 'Ewen Davanzo' },
@@ -121,10 +123,10 @@ const projetsBUT = [
   },
   {
     n: '02',
-    title: '[À REMPLIR — Titre du projet]',
-    tags: ['[À REMPLIR]'],
-    desc: '[À REMPLIR — Description courte du projet.]',
-    img: '// capture à venir',
+    title: 'Cineverse — Plateforme cinématographique en architecture découplée',
+    tags: ['Vue.js', 'Symfony', 'GraphQL', 'API Platform', 'PHP'],
+    desc: "Plateforme cinématographique interactive en architecture découplée — frontend Vue.js et backend Symfony communiquant via GraphQL, avec backoffice administrateur et pipeline CI.",
+    img: '// capture — Cineverse',
     projectIndex: 5,
   },
   {
@@ -156,7 +158,7 @@ const projetsBUTDetails = [
     context: '',
     mission: '',
     result: '',
-    nextLabel: '[À REMPLIR]',
+    nextLabel: 'Cineverse — Plateforme cinématographique en architecture découplée',
     stack: [
       { name: 'Symfony',   role: 'Framework PHP backend' },
       { name: 'Twig',      role: 'Moteur de template' },
@@ -210,13 +212,81 @@ const projetsBUTDetails = [
   {
     n: '02',
     group: 'but' as const,
-    title: '[À REMPLIR — Titre du projet]',
-    tags: ['[À REMPLIR]'],
-    intro: '[À REMPLIR — Introduction au projet.]',
-    context: '[À REMPLIR — Contexte et cahier des charges.]',
-    mission: '[À REMPLIR — Description du projet et de la démarche.]',
-    result: '[À REMPLIR — Résultat et livrables.]',
-    nextLabel: '[À REMPLIR]',
+    title: 'Cineverse — Plateforme cinématographique en architecture découplée',
+    tags: ['Vue.js', 'Symfony', 'API Platform', 'GraphQL', 'PHP', 'CI/CD'],
+    intro: "Dans le cadre de mon année universitaire, j'ai conçu et développé une plateforme cinématographique interactive. Ce projet a été réalisé de manière transversale à travers deux modules complémentaires : le module WR506D dédié au développement backend et le module WR505D dédié au développement frontend. La particularité de cette application repose sur son architecture découplée : l'interface utilisateur (le frontend) et le serveur gérant les données (le backend) sont deux applications totalement indépendantes qui communiquent entre elles de manière sécurisée.",
+    context: '',
+    mission: '',
+    result: '',
+    nextLabel: '[À REMPLIR — Titre du projet]',
+    stack: [
+      { name: 'Vue.js',           role: 'Framework JS · Interface utilisateur (WR505D)' },
+      { name: 'Symfony',          role: 'Framework PHP · Backend API (WR506D)' },
+      { name: 'API Platform',     role: 'Génération et exposition de l\'API' },
+      { name: 'GraphQL',          role: 'Communication frontend ↔ backend' },
+      { name: 'Fixtures & Faker', role: 'Génération de données factices réalistes' },
+      { name: 'Postman',          role: 'Tests manuels des endpoints API' },
+    ],
+    featuresIntro: "L'interface frontend (Vue.js) propose une expérience fluide pour les visiteurs :",
+    features: [
+      {
+        title: 'Espace personnel',
+        desc: "Création de compte et connexion sécurisée.",
+      },
+      {
+        title: 'Catalogue et Recherche',
+        desc: "Accès à une liste complète de films avec une barre de recherche intégrée et des filtres de tri (par réalisateur ou par ancienneté).",
+      },
+      {
+        title: 'Fiches détaillées',
+        desc: "Chaque film possède sa propre page affichant ses informations (date de sortie, réalisateur, genre, synopsis).",
+      },
+      {
+        title: 'Interactions sociales',
+        desc: "Les utilisateurs peuvent consulter les critiques laissées par les autres membres de la plateforme et publier leurs propres avis.",
+      },
+    ],
+    adminFeaturesIntro: "Pour gérer cette plateforme, j'ai développé des fonctionnalités avancées côté serveur :",
+    adminFeatures: [
+      {
+        title: 'Backoffice Administrateur',
+        desc: "Un espace de gestion (CRUD - Create, Read, Update, Delete) centralisé, réservé au personnel autorisé, permettant d'ajouter, modifier ou supprimer des films, des acteurs, des catégories, des commentaires ou des utilisateurs.",
+      },
+      {
+        title: 'Gestion des rôles',
+        desc: "Un système strict définissant les permissions (un simple utilisateur n'a pas les mêmes droits d'accès qu'un administrateur).",
+      },
+      {
+        title: 'Double Authentification (2FA)',
+        desc: "Intégration de Google Authenticator lors de la connexion pour ajouter une couche de sécurité supplémentaire au compte utilisateur.",
+      },
+      {
+        title: 'Rate Limiter (Limiteur de requêtes)',
+        desc: "Une protection empêchant un utilisateur ou un robot de lancer trop de requêtes simultanées, afin de protéger le serveur contre les surcharges ou les attaques malveillantes.",
+      },
+    ],
+    ciText: "Pour garantir un code propre et sans erreur, j'ai mis en place un pipeline d'Intégration Continue (CI) incluant plusieurs outils d'analyse automatique du code PHP :",
+    ciItems: [
+      {
+        n: '01',
+        title: 'PHP Code Sniffer',
+        desc: "Vérifie que le code respecte les standards de programmation professionnels à chaque modification.",
+      },
+      {
+        n: '02',
+        title: 'PHPStan',
+        desc: "Analyse statique du code pour détecter les bugs potentiels avant sa mise en ligne.",
+      },
+      {
+        n: '03',
+        title: 'PHPMD',
+        desc: "Détecte les problèmes d'optimisation et les mauvaises pratiques dans le code PHP.",
+      },
+    ],
+    heroImage: civerseAccueil,
+    heroImageCaption: "Page d'accueil",
+    secondImage: civerseFilm,
+    secondImageCaption: "Fiche détaillée d'un film",
   },
   {
     n: '03',

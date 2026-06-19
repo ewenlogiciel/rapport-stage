@@ -21,10 +21,14 @@ interface ProjectDetail {
   plans?: PlanItem[];
   featuresIntro?: string;
   features?: Feature[];
+  adminFeaturesIntro?: string;
+  adminFeatures?: Feature[];
   ciText?: string;
   ciItems?: CIItem[];
   heroImage?: ImageMetadata;
+  heroImageCaption?: string;
   secondImage?: ImageMetadata;
+  secondImageCaption?: string;
 }
 interface Props {
   projects: ProjectDetail[];
@@ -89,7 +93,7 @@ const { projects } = Astro.props;
               alt={`Page d'accueil — ${p.title}`}
               class="w-full rounded-[14px] border border-white/[0.1]"
             />
-            <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// Page d'accueil</p>
+            <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// {p.heroImageCaption ?? "Page d'accueil"}</p>
           </div>
         )}
 
@@ -140,7 +144,22 @@ const { projects } = Astro.props;
               alt={`Outils disponibles — ${p.title}`}
               class="w-full rounded-[14px] border border-white/[0.1]"
             />
-            <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// Page des outils disponibles</p>
+            <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// {p.secondImageCaption ?? "Page des outils disponibles"}</p>
+          </div>
+        )}
+
+        {(p.adminFeatures || p.adminFeaturesIntro) && (
+          <div class="mb-14">
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">Administration &amp; Sécurité</div>
+            {p.adminFeaturesIntro && (
+              <p class="m-0 mb-8 text-[#b4b4be] leading-[1.75]" style="font-size:15.5px; max-width:68ch;">{p.adminFeaturesIntro}</p>
+            )}
+            {p.adminFeatures?.map((f, fi) => (
+              <div class={`pl-5 ${fi < (p.adminFeatures?.length ?? 0) - 1 ? 'mb-9' : ''}`} style="border-left:2px solid rgb(var(--acc-rgb) / 0.3);">
+                <h3 class="m-0 mb-2 text-[17px] font-semibold">{f.title}</h3>
+                <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:15px; max-width:66ch;">{f.desc}</p>
+              </div>
+            ))}
           </div>
         )}
 
