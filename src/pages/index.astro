@@ -13,6 +13,8 @@ import polypdfAccueil from '../assets/pojets-universitaires/polypdf/polypdf-acca
 import polypdfOutils from '../assets/pojets-universitaires/polypdf/polypdf-outils.png';
 import civerseAccueil from '../assets/pojets-universitaires/cineverse/cineverse-accueil.png';
 import civerseFilm from '../assets/pojets-universitaires/cineverse/cineverse-film.png';
+import nexusAccueil from '../assets/pojets-universitaires/nexus/nexus-accueil.png';
+import nexusGame from '../assets/pojets-universitaires/nexus/nexus-game.png';
 
 const heroMeta = [
   { k: 'Étudiant',   v: 'Ewen Davanzo' },
@@ -131,10 +133,10 @@ const projetsBUT = [
   },
   {
     n: '03',
-    title: '[À REMPLIR — Titre du projet]',
-    tags: ['[À REMPLIR]'],
-    desc: '[À REMPLIR — Description courte du projet.]',
-    img: '// capture à venir',
+    title: 'Nexus — Jeu de tir en Réalité Virtuelle (VR) et site de présentation',
+    tags: ['Unity', 'C#', 'VR', 'Vue.js', 'Tailwind CSS', 'CI/CD'],
+    desc: "Jeu de tir à la première personne en réalité virtuelle sur Meta Quest, avec univers Cyberpunk et site de présentation déployé automatiquement via CI/CD.",
+    img: '// nexus — site de présentation',
     projectIndex: 6,
   },
   {
@@ -218,7 +220,7 @@ const projetsBUTDetails = [
     context: '',
     mission: '',
     result: '',
-    nextLabel: '[À REMPLIR — Titre du projet]',
+    nextLabel: 'Nexus — Jeu de tir en Réalité Virtuelle (VR) et site de présentation',
     stack: [
       { name: 'Vue.js',           role: 'Framework JS · Interface utilisateur (WR505D)' },
       { name: 'Symfony',          role: 'Framework PHP · Backend API (WR506D)' },
@@ -291,13 +293,57 @@ const projetsBUTDetails = [
   {
     n: '03',
     group: 'but' as const,
-    title: '[À REMPLIR — Titre du projet]',
-    tags: ['[À REMPLIR]'],
-    intro: '[À REMPLIR — Introduction au projet.]',
-    context: '[À REMPLIR — Contexte et cahier des charges.]',
-    mission: '[À REMPLIR — Description du projet et de la démarche.]',
-    result: '[À REMPLIR — Résultat et livrables.]',
-    nextLabel: '[À REMPLIR]',
+    title: 'Nexus — Jeu de tir en Réalité Virtuelle (VR) et site de présentation',
+    tags: ['Unity', 'C#', 'VR', 'Meta Quest', 'Vue.js', 'Tailwind CSS', 'CI/CD'],
+    intro: "Dans le cadre du module universitaire WR507D, j'ai développé une expérience en réalité virtuelle : un jeu de tir à la première personne jouable sur les casques Meta Quest 2 et 3. L'univers graphique et immersif que j'ai choisi est de style Cyberpunk, caractérisé par un environnement sombre, une esthétique futuriste, un pistolet laser et des effets visuels de \"glitch\" (artefacts numériques) sur les cibles. En complément du jeu, j'ai conçu un site web dédié pour présenter le projet et distribuer l'application.",
+    context: '',
+    mission: '',
+    result: '',
+    nextLabel: '[À REMPLIR — Titre du projet]',
+    stack: [
+      { name: 'Unity',        role: 'Moteur de jeu 3D utilisé pour créer l\'environnement, gérer la physique de la réalité virtuelle et assembler le projet.' },
+      { name: 'C#',           role: 'Langage de programmation utilisé pour coder toute la logique du jeu (scripts, comportements des objets, décompte des points).' },
+      { name: 'Vue.js',       role: 'Framework JavaScript utilisé pour construire une interface web dynamique et structurée.' },
+      { name: 'Tailwind CSS', role: 'Framework CSS basé sur des classes utilitaires pour concevoir rapidement un design moderne et responsive (adapté aux mobiles et ordinateurs).' },
+    ],
+    featuresIntro: "Le cœur de l'application VR repose sur une boucle de gameplay complète et interactive d'une minute :",
+    features: [
+      {
+        title: 'Interactions VR',
+        desc: 'Implémentation des mécaniques fondamentales de la VR, à savoir une arme "grabbable" (que l\'on peut saisir physiquement avec la manette) et "actionable" (sur laquelle on peut presser la gâchette pour tirer).',
+      },
+      {
+        title: 'Règles du jeu et système de score',
+        desc: 'Apparition de cibles en mouvement. Toucher une cible verte augmente le score, tandis que toucher une cible rouge fait perdre des points.',
+      },
+      {
+        title: 'Boucle de jeu (Gameplay Loop)',
+        desc: 'Gestion des différents états de la partie : un écran d\'accueil pour démarrer, la phase de jeu active avec un minuteur d\'une minute et le score, et un écran de fin affichant le score final avec la possibilité de relancer une partie.',
+      },
+      {
+        title: '"Juice" et Immersion',
+        desc: 'Ajout de finitions pour rendre le jeu plus dynamique et satisfaisant à jouer, notamment grâce à l\'intégration du sound design (effets sonores lors des tirs et des impacts) et des effets de glitch visuels sur les cibles.',
+      },
+    ],
+    ciTitle: 'Le Site Web & CI/CD',
+    ciFullWidth: true,
+    ciText: 'Le site web sert de vitrine et de plateforme de téléchargement pour le projet :',
+    ciItems: [
+      {
+        n: '01',
+        title: 'Contenu du site',
+        desc: 'Il intègre une vidéo montrant une boucle de gameplay complète, des explications textuelles des règles, une présentation des assets (modèles 3D utilisés), un extrait de code source pour la partie technique, ainsi qu\'un lien pour télécharger directement le fichier APK.',
+      },
+      {
+        n: '02',
+        title: 'Déploiement avec une CI/CD (Continuous Integration / Continuous Delivery)',
+        desc: 'La CI/CD (Intégration Continue et Déploiement Continu) est une chaîne de scripts automatisée liée à mon dépôt de code GitHub. Concrètement, dès que je modifie le code du site web et que je l\'envoie sur GitHub, la CI vérifie automatiquement que le projet compile sans erreur. Si tout est correct, la CD prend immédiatement le relais pour compiler la version finale du site et la mettre à jour en ligne automatiquement sur GitHub Pages. Cela évite d\'avoir à transférer manuellement les fichiers du site sur un serveur à chaque modification.',
+      },
+    ],
+    heroImage: nexusAccueil,
+    heroImageCaption: 'Site de présentation — Nexus',
+    secondImage: nexusGame,
+    secondImageCaption: 'Vue en jeu',
   },
   {
     n: '04',

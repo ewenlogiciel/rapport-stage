@@ -23,8 +23,10 @@ interface ProjectDetail {
   features?: Feature[];
   adminFeaturesIntro?: string;
   adminFeatures?: Feature[];
+  ciTitle?: string;
   ciText?: string;
   ciItems?: CIItem[];
+  ciFullWidth?: boolean;
   heroImage?: ImageMetadata;
   heroImageCaption?: string;
   secondImage?: ImageMetadata;
@@ -165,17 +167,27 @@ const { projects } = Astro.props;
 
         {(p.ciText || p.ciItems) && (
           <div class="mb-14">
-            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-4">Qualité logicielle & CI</div>
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-4">{p.ciTitle ?? 'Qualité logicielle & CI'}</div>
             {p.ciText && (
               <p class="m-0 mb-7 text-[#b4b4be] leading-[1.75]" style="font-size:16px; max-width:68ch;">{p.ciText}</p>
             )}
-            {p.ciItems && (
+            {p.ciItems && !p.ciFullWidth && (
               <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(240px,100%),1fr)); gap:14px;">
                 {p.ciItems.map(item => (
                   <div class="rounded-[10px] border border-white/[0.08]" style="background:rgba(255,255,255,0.03); padding:18px;">
                     <div class="font-mono text-[10px] tracking-[0.12em] uppercase text-accent mb-2">{item.n}</div>
                     <div class="font-semibold text-[14px] mb-2">{item.title}</div>
                     <div class="text-[13px] text-[#8a8a96] leading-[1.65]">{item.desc}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+            {p.ciItems && p.ciFullWidth && (
+              <div>
+                {p.ciItems.map((item, ii) => (
+                  <div class={`pl-5 ${ii < (p.ciItems?.length ?? 0) - 1 ? 'mb-9' : ''}`} style="border-left:2px solid rgb(var(--acc-rgb) / 0.3);">
+                    <h3 class="m-0 mb-2 text-[17px] font-semibold">{item.title}</h3>
+                    <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:15px; max-width:66ch;">{item.desc}</p>
                   </div>
                 ))}
               </div>
