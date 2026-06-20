@@ -9,7 +9,7 @@ interface CIItem      { n: string; title: string; desc: string; }
 
 interface ProjectDetail {
   n: string;
-  group: 'stage' | 'but';
+  group: 'stage' | 'but' | 'personnel';
   title: string;
   tags: string[];
   intro: string;
@@ -27,10 +27,16 @@ interface ProjectDetail {
   ciText?: string;
   ciItems?: CIItem[];
   ciFullWidth?: boolean;
+  adminTitle?: string;
+  competences?: string[];
+  competencesSectionIntro?: string;
+  competencesSection?: Feature[];
   heroImage?: ImageMetadata;
   heroImageCaption?: string;
   secondImage?: ImageMetadata;
   secondImageCaption?: string;
+  thirdImage?: ImageMetadata;
+  thirdImageCaption?: string;
 }
 interface Props {
   projects: ProjectDetail[];
@@ -67,12 +73,20 @@ const { projects } = Astro.props;
 
       <article id={`proj-detail-${i}`} class={i === 0 ? '' : 'hidden'} data-next-label={p.nextLabel} data-group={p.group}>
 
-        <div class="flex items-center gap-3 mb-5">
-          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent">// Projet BUT {p.n}</div>
+        <div class="flex flex-wrap items-center gap-3 mb-5">
+          <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent">
+            {p.group === 'personnel' ? '// Projet Perso' : '// Projet BUT'} {p.n}
+          </div>
           <span
             class="font-mono text-[10px] tracking-[0.1em] uppercase border border-accent/30 rounded-full px-2 py-[3px]"
             style="color:var(--color-accent); background:rgb(var(--acc-rgb) / 0.07);"
-          >BUT MMI · 2025/2026</span>
+          >{p.group === 'personnel' ? 'Personnel · 2025/2026' : 'BUT MMI · 2025/2026'}</span>
+          {p.competences?.map(c => (
+            <span
+              class="font-mono text-[10px] tracking-[0.1em] uppercase border rounded-full px-2 py-[3px]"
+              style="color:#a3a3ad; border-color:rgba(255,255,255,0.15); background:rgba(255,255,255,0.04);"
+            >{c}</span>
+          ))}
         </div>
 
         <h1 class="m-0 font-semibold leading-[1.05] tracking-[-0.02em]" style="font-size:clamp(30px,4.4vw,52px);">{p.title}</h1>
@@ -152,7 +166,7 @@ const { projects } = Astro.props;
 
         {(p.adminFeatures || p.adminFeaturesIntro) && (
           <div class="mb-14">
-            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">Administration &amp; Sécurité</div>
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">{p.adminTitle ?? 'Administration & Sécurité'}</div>
             {p.adminFeaturesIntro && (
               <p class="m-0 mb-8 text-[#b4b4be] leading-[1.75]" style="font-size:15.5px; max-width:68ch;">{p.adminFeaturesIntro}</p>
             )}
@@ -195,6 +209,21 @@ const { projects } = Astro.props;
           </div>
         )}
 
+        {(p.competencesSectionIntro || p.competencesSection) && (
+          <div class="mb-14">
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">Validation des Compétences BUT MMI</div>
+            {p.competencesSectionIntro && (
+              <p class="m-0 mb-8 text-[#b4b4be] leading-[1.75]" style="font-size:15.5px; max-width:68ch;">{p.competencesSectionIntro}</p>
+            )}
+            {p.competencesSection?.map((c, ci) => (
+              <div class={`pl-5 ${ci < (p.competencesSection?.length ?? 0) - 1 ? 'mb-9' : ''}`} style="border-left:2px solid rgb(var(--acc-rgb) / 0.3);">
+                <h3 class="m-0 mb-2 text-[17px] font-semibold">{c.title}</h3>
+                <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:15px; max-width:66ch;">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        )}
+
         {p.result && (
           <div>
             <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-4">Le résultat</div>
@@ -208,7 +237,7 @@ const { projects } = Astro.props;
 
       <article id={`proj-detail-${i}`} class={i === 0 ? '' : 'hidden'} data-next-label={p.nextLabel} data-group={p.group}>
 
-        <div class="flex items-center gap-3 mb-5">
+        <div class="flex flex-wrap items-center gap-3 mb-5">
           <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent">
             {p.group === 'but' ? '// Projet BUT' : '// Projet'} {p.n}
           </div>
@@ -218,6 +247,12 @@ const { projects } = Astro.props;
               style="color:var(--color-accent); background:rgb(var(--acc-rgb) / 0.07);"
             >BUT MMI · 2025/2026</span>
           )}
+          {p.competences?.map(c => (
+            <span
+              class="font-mono text-[10px] tracking-[0.1em] uppercase border rounded-full px-2 py-[3px]"
+              style="color:#a3a3ad; border-color:rgba(255,255,255,0.15); background:rgba(255,255,255,0.04);"
+            >{c}</span>
+          ))}
         </div>
 
         <h1 class="m-0 font-semibold leading-[1.05] tracking-[-0.02em]" style="font-size:clamp(30px,4.4vw,52px);">{p.title}</h1>
@@ -233,18 +268,30 @@ const { projects } = Astro.props;
 
         <p class="mt-[26px] mb-10 text-[#d4d4dc] leading-[1.65]" style="font-size:clamp(17px,1.6vw,21px); max-width:62ch;">{p.intro}</p>
 
-        <div
-          class="w-full flex items-center justify-center border border-dashed border-white/10 rounded-[14px] bg-white/[0.02]"
-          style="height:clamp(240px,44vw,460px);"
-        >
-          <span class="font-mono text-[12px] text-[#6a6a76]">// image à venir</span>
-        </div>
+        {p.heroImage ? (
+          <div class="mb-14">
+            <Image
+              src={p.heroImage}
+              alt={p.heroImageCaption ?? p.title}
+              class="w-full rounded-[14px] border border-white/[0.1]"
+            />
+            {p.heroImageCaption && (
+              <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// {p.heroImageCaption}</p>
+            )}
+          </div>
+        ) : (
+          <div
+            class="w-full flex items-center justify-center border border-dashed border-white/10 rounded-[14px] bg-white/[0.02] mb-14"
+            style="height:clamp(240px,44vw,460px);"
+          >
+            <span class="font-mono text-[12px] text-[#6a6a76]">// image à venir</span>
+          </div>
+        )}
 
-        <div class="mt-14">
+        <div class="mt-0">
           <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-[14px]">Le contexte</div>
           <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">
-            {p.context}
-            <span class="block mt-3 font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>
+            {p.context || <span class="font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>}
           </p>
         </div>
 
@@ -253,33 +300,75 @@ const { projects } = Astro.props;
             {p.group === 'but' ? 'Le projet' : 'Ma mission'}
           </div>
           <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">
-            {p.mission}
-            <span class="block mt-3 font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>
+            {p.mission || <span class="font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>}
           </p>
         </div>
 
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(220px,100%),1fr)); gap:18px; margin-top:40px;">
-          <div
-            class="flex items-center justify-center border border-dashed border-white/10 rounded-[12px] bg-white/[0.02]"
-            style="height:clamp(200px,30vw,300px);"
-          >
-            <span class="font-mono text-[11px] text-[#6a6a76]">// image à venir</span>
+        {(p.secondImage || p.thirdImage) ? (
+          <>
+            {p.secondImage && (
+              <div class="mt-10">
+                <Image
+                  src={p.secondImage}
+                  alt={p.secondImageCaption ?? ''}
+                  class="w-full rounded-[14px] border border-white/[0.1]"
+                />
+                {p.secondImageCaption && (
+                  <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// {p.secondImageCaption}</p>
+                )}
+              </div>
+            )}
+            {p.thirdImage && (
+              <div class="mt-10">
+                <Image
+                  src={p.thirdImage}
+                  alt={p.thirdImageCaption ?? ''}
+                  class="w-full rounded-[14px] border border-white/[0.1]"
+                />
+                {p.thirdImageCaption && (
+                  <p class="m-0 mt-3 font-mono text-[11px] text-[#6a6a76] text-center">// {p.thirdImageCaption}</p>
+                )}
+              </div>
+            )}
+          </>
+        ) : (
+          <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(min(220px,100%),1fr)); gap:18px; margin-top:40px;">
+            <div
+              class="flex items-center justify-center border border-dashed border-white/10 rounded-[12px] bg-white/[0.02]"
+              style="height:clamp(200px,30vw,300px);"
+            >
+              <span class="font-mono text-[11px] text-[#6a6a76]">// image à venir</span>
+            </div>
+            <div
+              class="flex items-center justify-center border border-dashed border-white/10 rounded-[12px] bg-white/[0.02]"
+              style="height:clamp(200px,30vw,300px);"
+            >
+              <span class="font-mono text-[11px] text-[#6a6a76]">// image à venir</span>
+            </div>
           </div>
-          <div
-            class="flex items-center justify-center border border-dashed border-white/10 rounded-[12px] bg-white/[0.02]"
-            style="height:clamp(200px,30vw,300px);"
-          >
-            <span class="font-mono text-[11px] text-[#6a6a76]">// image à venir</span>
-          </div>
-        </div>
+        )}
 
         <div class="mt-14">
           <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-[14px]">Le résultat</div>
           <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:16.5px; max-width:68ch;">
-            {p.result}
-            <span class="block mt-3 font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>
+            {p.result || <span class="font-mono text-[12.5px] text-[#6a6a76]">[À REMPLIR]</span>}
           </p>
         </div>
+
+        {(p.competencesSectionIntro || p.competencesSection) && (
+          <div class="mt-14">
+            <div class="font-mono text-[12px] tracking-[0.16em] uppercase text-accent mb-5">Validation des Compétences BUT MMI</div>
+            {p.competencesSectionIntro && (
+              <p class="m-0 mb-8 text-[#b4b4be] leading-[1.75]" style="font-size:15.5px; max-width:68ch;">{p.competencesSectionIntro}</p>
+            )}
+            {p.competencesSection?.map((c, ci) => (
+              <div class={`pl-5 ${ci < (p.competencesSection?.length ?? 0) - 1 ? 'mb-9' : ''}`} style="border-left:2px solid rgb(var(--acc-rgb) / 0.3);">
+                <h3 class="m-0 mb-2 text-[17px] font-semibold">{c.title}</h3>
+                <p class="m-0 text-[#b4b4be] leading-[1.75]" style="font-size:15px; max-width:66ch;">{c.desc}</p>
+              </div>
+            ))}
+          </div>
+        )}
 
       </article>
 

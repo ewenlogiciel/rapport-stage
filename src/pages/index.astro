@@ -15,6 +15,11 @@ import civerseAccueil from '../assets/pojets-universitaires/cineverse/cineverse-
 import civerseFilm from '../assets/pojets-universitaires/cineverse/cineverse-film.png';
 import nexusAccueil from '../assets/pojets-universitaires/nexus/nexus-accueil.png';
 import nexusGame from '../assets/pojets-universitaires/nexus/nexus-game.png';
+import cipherAccueil from '../assets/pojets-universitaires/cipher/cipher-accueil.png';
+import cipherCoffre from '../assets/pojets-universitaires/cipher/cipher-vue-coffre.png';
+import livePageAttente from '../assets/projets-stage/live-page-attente.png';
+import liveFlyerMaquette from '../assets/projets-stage/live-flyer-maquette.png';
+import liveResponsif from '../assets/projets-stage/live-responsif.png';
 
 const heroMeta = [
   { k: 'Étudiant',   v: 'Ewen Davanzo' },
@@ -63,6 +68,14 @@ const missions = [
     result: "Socle de composants documentés, réutilisables d'un projet à l'autre.",
     img: '// capture — Storybook',
   },
+  {
+    n: '05',
+    title: "Page web événementielle — Live « Passage de témoin »",
+    tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
+    desc: "Site web événementiel pour le live interne du passage de témoin de la direction générale — de la maquette à la mise en ligne, accessible à 12 000 collaborateurs.",
+    result: "Page animée et responsive, cohérente avec la charte, mise en ligne de manière autonome.",
+    img: '// live — page d\'attente',
+  },
 ];
 
 // Stage project details — indices 0-3 in the overlay
@@ -109,7 +122,36 @@ const projectDetails = [
     context: "Le design system existait côté design ; l'enjeu était de le traduire en composants front fiables, documentés et partagés entre les projets.",
     mission: "J'ai développé des composants Vue typés en TypeScript et les ai documentés dans Storybook — variantes, états et exemples d'usage à l'appui.",
     result: "Un socle de composants documentés et testables, réutilisé d'un projet à l'autre.",
-    nextLabel: "Refonte de l'application de commande",
+    nextLabel: "Page web événementielle — Live « Passage de témoin »",
+  },
+  {
+    n: '05',
+    group: 'stage' as const,
+    title: "Page web événementielle — Live « Passage de témoin de la Direction Générale »",
+    tags: ['HTML', 'CSS', 'JavaScript', 'UI/UX', 'Responsive'],
+    intro: "Lors de mon stage chez Api Restauration, l'entreprise m'a confié la réalisation d'un site web dédié à un événement interne majeur : le passage de témoin de la direction générale prévu le 1er juillet. L'enjeu de ce projet était de taille, car le directeur actuel devait passer la main à la nouvelle génération lors d'une diffusion en direct destinée à l'ensemble des collaborateurs du groupe, soit plus de 12 000 personnes.",
+    context: "Avant de coder, j'ai géré la phase de conception en collaboration avec les autres services de l'entreprise : Maquettage : J'ai d'abord réalisé une maquette de la « page d'attente » (le site accessible avant le jour J) afin de proposer une première direction visuelle. Collaboration interdisciplinaire : J'ai soumis cette maquette au pôle Communication pour validation. Suite à nos échanges, j'ai adapté mon design pour qu'il respecte la charte graphique du flyer d'invitation qu'ils avaient déjà créé, assurant ainsi une cohérence visuelle totale sur l'événement.",
+    mission: "Une fois le design validé, je me suis occupé du développement technique de la page d'attente : Technologies utilisées : Intégration pure en HTML et CSS, avec l'ajout de JavaScript pour dynamiser l'interface. Responsive Design : J'ai conçu le site pour qu'il s'adapte parfaitement à toutes les tailles d'écrans (ordinateurs, tablettes, smartphones), une nécessité pour que les 12 000 employés puissent y accéder depuis n'importe quel appareil. Animations et Finitions : J'ai intégré des animations CSS/JS pour rendre la page d'attente plus vivante et engageante, et j'ai rédigé et intégré la page des mentions légales nécessaire pour la conformité du site.",
+    result: "J'ai pris en charge la mise en ligne autonome de cette page d'attente sur les serveurs. Pour le jour de l'événement, ma mission consistera à réaliser une seconde page web, sur laquelle j'intégrerai l'iframe (le module vidéo externe) permettant de diffuser le flux en direct à tous les collaborateurs.",
+    nextLabel: "Refonte de l'application de commande de repas",
+    competences: ['Développer', 'Entreprendre'],
+    competencesSectionIntro: "Ce projet de stage illustre parfaitement ma capacité à mobiliser mes deux compétences majeures dans un contexte professionnel réel et à fort enjeu :",
+    competencesSection: [
+      {
+        title: 'Développer pour le web et les médias numériques',
+        desc: "Je démontre ici ma maîtrise de l'intégration web (HTML, CSS, JavaScript) et des normes du Web (Responsive Design, accessibilité multi-supports, conformité avec les mentions légales). J'ai également prouvé mon autonomie sur la mise en ligne d'un projet.",
+      },
+      {
+        title: 'Entreprendre dans le secteur du numérique',
+        desc: "J'ai conduit ce projet de bout en bout en répondant à un besoin d'entreprise précis. Le travail d'itération sur la maquette avec le pôle Communication et l'adaptation stricte à une charte graphique existante valident ma capacité à appliquer des notions de communication numérique et à collaborer efficacement avec différents services.",
+      },
+    ],
+    heroImage: livePageAttente,
+    heroImageCaption: "Première maquette",
+    secondImage: liveFlyerMaquette,
+    secondImageCaption: "Flyer à gauche et maquette adapatée à droite",
+    thirdImage: liveResponsif,
+    thirdImageCaption: "Site en format tablette",
   },
 ];
 
@@ -117,35 +159,43 @@ const projectDetails = [
 const projetsBUT = [
   {
     n: '01',
+    group: 'but' as const,
     title: 'Polypdf — Micro-service de conversion et génération de PDF',
     tags: ['Symfony', 'PHP', 'Twig', 'Gotenberg', 'Stripe', 'CI'],
     desc: "Micro-service de génération de PDF avec modèle freemium, paiement Stripe et pipeline CI — conçu comme un produit commercialisable réel.",
-    img: '// polypdf — page d\'accueil',
-    projectIndex: 4,
+    heroImage: polypdfAccueil,
+    projectIndex: 5,
+    competences: ['Développer', 'Entreprendre'],
   },
   {
     n: '02',
+    group: 'but' as const,
     title: 'Cineverse — Plateforme cinématographique en architecture découplée',
     tags: ['Vue.js', 'Symfony', 'GraphQL', 'API Platform', 'PHP'],
     desc: "Plateforme cinématographique interactive en architecture découplée — frontend Vue.js et backend Symfony communiquant via GraphQL, avec backoffice administrateur et pipeline CI.",
-    img: '// capture — Cineverse',
-    projectIndex: 5,
+    heroImage: civerseAccueil,
+    projectIndex: 6,
+    competences: ['Développer'],
   },
   {
     n: '03',
+    group: 'but' as const,
     title: 'Nexus — Jeu de tir en Réalité Virtuelle (VR) et site de présentation',
     tags: ['Unity', 'C#', 'VR', 'Vue.js', 'Tailwind CSS', 'CI/CD'],
     desc: "Jeu de tir à la première personne en réalité virtuelle sur Meta Quest, avec univers Cyberpunk et site de présentation déployé automatiquement via CI/CD.",
-    img: '// nexus — site de présentation',
-    projectIndex: 6,
+    heroImage: nexusAccueil,
+    projectIndex: 7,
+    competences: ['Développer', 'Entreprendre'],
   },
   {
-    n: '04',
-    title: '[À REMPLIR — Titre du projet]',
-    tags: ['[À REMPLIR]'],
-    desc: '[À REMPLIR — Description courte du projet.]',
-    img: '// capture à venir',
-    projectIndex: 7,
+    n: '05',
+    group: 'personnel' as const,
+    title: 'Cipher — Gestionnaire de mots de passe pour développeurs',
+    tags: ['Symfony', 'Nuxt', 'PostgreSQL', 'DevSecOps'],
+    desc: "Application de gestion et partage sécurisés d'identifiants entre développeurs, avec chiffrement AES-256, 2FA, logs d'audit et pipeline DevSecOps complète.",
+    heroImage: cipherAccueil,
+    projectIndex: 8,
+    competences: ['Développer', 'Entreprendre'],
   },
 ];
 
@@ -161,6 +211,17 @@ const projetsBUTDetails = [
     mission: '',
     result: '',
     nextLabel: 'Cineverse — Plateforme cinématographique en architecture découplée',
+    competences: ['Développer', 'Entreprendre'],
+    competencesSection: [
+      {
+        title: 'Développer pour le web et les médias numériques',
+        desc: "J'ai conçu l'intégralité d'une application web dynamique en articulant un backend (PHP avec Symfony) et une interface (HTML/CSS avec Twig). J'ai également interfacé des services en ligne complexes, notamment pour sécuriser les accès (système d'authentification par mail) et automatiser la génération de fichiers PDF.",
+      },
+      {
+        title: 'Entreprendre dans le secteur du numérique',
+        desc: "Ce projet simule un modèle économique réel. J'ai dû adapter des notions de gestion et de marketing en intégrant un modèle \"Freemium\" à trois forfaits, et implémenter concrètement le système de paiement Stripe. De plus, la gestion automatisée des permissions selon les abonnements répond directement à une logique de stratégie commerciale numérique.",
+      },
+    ],
     stack: [
       { name: 'Symfony',   role: 'Framework PHP backend' },
       { name: 'Twig',      role: 'Moteur de template' },
@@ -221,6 +282,13 @@ const projetsBUTDetails = [
     mission: '',
     result: '',
     nextLabel: 'Nexus — Jeu de tir en Réalité Virtuelle (VR) et site de présentation',
+    competences: ['Développer'],
+    competencesSection: [
+      {
+        title: 'Développer pour le web et les médias numériques',
+        desc: "J'ai mis en pratique un développement \"Fullstack\" avancé en créant une architecture découplée complexe. Cela valide ma maîtrise du backend (PHP avec Symfony, création d'une API GraphQL) et du frontend (JavaScript avec Vue.js). J'ai également prouvé ma capacité à interfacer des services de sécurité (Double authentification avec Google Authenticator) et à gérer des bases de données de manière optimisée (CRUD, filtres, données factices).",
+      },
+    ],
     stack: [
       { name: 'Vue.js',           role: 'Framework JS · Interface utilisateur (WR505D)' },
       { name: 'Symfony',          role: 'Framework PHP · Backend API (WR506D)' },
@@ -299,7 +367,19 @@ const projetsBUTDetails = [
     context: '',
     mission: '',
     result: '',
-    nextLabel: '[À REMPLIR — Titre du projet]',
+    nextLabel: 'Polypdf — Micro-service de conversion et génération de PDF',
+    competences: ['Développer', 'Entreprendre'],
+    competencesSectionIntro: "Ce projet pluridisciplinaire m'a permis de mobiliser l'ensemble de mes compétences :",
+    competencesSection: [
+      {
+        title: 'Développer pour le web et les médias numériques',
+        desc: "La dimension développement est double ici. D'une part, j'ai codé la logique globale, la physique et les interactions d'un dispositif interactif 3D complexe (C# sous Unity). D'autre part, j'ai développé et intégré le site web de présentation en utilisant des technologies modernes (Vue.js et Tailwind CSS).",
+      },
+      {
+        title: 'Entreprendre dans le secteur du numérique',
+        desc: "Ce projet a nécessité une conduite de projet rigoureuse pour mener de front le développement de deux produits distincts (le jeu VR et le site de distribution). La mise en valeur des assets graphiques, la présentation des fonctionnalités et la mise à disposition de l'APK traduisent une démarche marketing concrète pour promouvoir et diffuser un produit numérique auprès de son public cible.",
+      },
+    ],
     stack: [
       { name: 'Unity',        role: 'Moteur de jeu 3D utilisé pour créer l\'environnement, gérer la physique de la réalité virtuelle et assembler le projet.' },
       { name: 'C#',           role: 'Langage de programmation utilisé pour coder toute la logique du jeu (scripts, comportements des objets, décompte des points).' },
@@ -346,36 +426,86 @@ const projetsBUTDetails = [
     secondImageCaption: 'Vue en jeu',
   },
   {
-    n: '04',
-    group: 'but' as const,
-    title: '[À REMPLIR — Titre du projet]',
-    tags: ['[À REMPLIR]'],
-    intro: '[À REMPLIR — Introduction au projet.]',
-    context: '[À REMPLIR — Contexte et cahier des charges.]',
-    mission: '[À REMPLIR — Description du projet et de la démarche.]',
-    result: '[À REMPLIR — Résultat et livrables.]',
-    nextLabel: 'Polypdf — Micro-service de conversion et génération de PDF',
+    n: '01',
+    group: 'personnel' as const,
+    title: 'Cipher — Gestionnaire de mots de passe pour développeurs',
+    tags: ['Symfony', 'Nuxt', 'PostgreSQL', 'CI/CD', 'DevSecOps'],
+    intro: "Réalisé dans le cadre du module WR610D, ce projet en autonomie complète avait pour objectif de démontrer ma capacité à entreprendre, concevoir et piloter un projet d'envergure de bout en bout. Visant une poursuite d'études en cybersécurité pour devenir ingénieur DevSecOps (une spécialité qui consiste à intégrer et automatiser la sécurité informatique à toutes les étapes de la création d'un logiciel, plutôt que de la vérifier uniquement à la fin), j'ai développé une application répondant à un besoin critique en entreprise : la gestion et le partage sécurisés d'identifiants entre développeurs (qui s'échangent encore trop souvent des mots de passe ou des clés d'API par Slack ou par e-mail). Ce projet prouve mon opérationnalité immédiate sur des problématiques de sécurité et d'automatisation à la sortie du BUT.",
+    context: '',
+    mission: '',
+    result: '',
+    nextLabel: 'Cipher — Gestionnaire de mots de passe pour développeurs',
+    competences: ['Développer', 'Entreprendre'],
+    stack: [
+      { name: 'Symfony',    role: 'Backend · Framework PHP' },
+      { name: 'Nuxt',       role: 'Frontend · Framework Vue.js SSR' },
+      { name: 'PostgreSQL', role: 'Base de données relationnelle' },
+      { name: 'AES-256',    role: 'Chiffrement symétrique des secrets' },
+      { name: 'Docker',     role: 'Conteneurisation & déploiement' },
+      { name: 'PHPStan',    role: 'Analyse statique (SAST)' },
+    ],
+    featuresIntro: "L'application est structurée autour du concept de « coffres-forts » numériques hautement sécurisés :",
+    features: [
+      {
+        title: 'Types de données supportés',
+        desc: "Prise en charge des besoins spécifiques des développeurs, permettant de stocker des mots de passe, des clés d'API, des jetons (tokens), des clés SSH ou des variables d'environnement.",
+      },
+      {
+        title: 'Gestion fine des permissions',
+        desc: "Le créateur d'un coffre peut administrer précisément les droits des autres collaborateurs (autorisation de lecture seule, d'ajout, de modification).",
+      },
+      {
+        title: "Traçabilité et Logs d'activité",
+        desc: "Implémentation d'un système de journalisation (logs) strict. Chaque action est enregistrée avec horodatage précis (qui a consulté, créé, modifié ou supprimé un secret, quel jour et à quelle heure) à des fins d'audit.",
+      },
+    ],
+    adminTitle: 'Mesures de Cybersécurité',
+    adminFeaturesIntro: "Pour assurer la confidentialité et la résilience de la plateforme, plusieurs barrières de sécurité ont été intégrées :",
+    adminFeatures: [
+      {
+        title: 'Chiffrement fort (AES-256)',
+        desc: "Toutes les données sensibles sont chiffrées directement en base de données avec l'algorithme de chiffrement symétrique standard de niveau militaire AES-256. Même en cas de fuite de la base de données, les secrets restent illisibles.",
+      },
+      {
+        title: 'Double Authentification (2FA)',
+        desc: "Possibilité pour les utilisateurs de renforcer la sécurité de leur compte lors de la connexion.",
+      },
+      {
+        title: 'Rate Limiter (Limiteur de requêtes)',
+        desc: "Protection contre les attaques par force brute (tentatives de connexion répétées) en bloquant les requêtes excessives.",
+      },
+    ],
+    ciTitle: 'Pipeline DevSecOps & Automatisation',
+    ciFullWidth: true,
+    ciText: "L'aspect DevOps et sécurité a été automatisé à travers une chaîne d'intégration et de déploiement continu (CI/CD) stricte, articulée autour de plusieurs étapes clés avant la mise en production :",
+    ciItems: [
+      { n: '01', title: 'Commit', desc: "Publication et envoi du code source sur le dépôt distant." },
+      { n: '02', title: 'Lint & Test', desc: "Analyse de la syntaxe du code pour assurer sa conformité aux standards professionnels et exécution des tests unitaires pour valider la logique métier." },
+      { n: '03', title: 'Security Audit', desc: "Scan automatisé des dépendances PHP pour détecter si une bibliothèque externe utilisée par le projet comporte une vulnérabilité connue." },
+      { n: '04', title: 'SAST (Static Application Security Testing)', desc: "Analyse statique automatique du code source pour identifier d'éventuelles failles de sécurité directement dans notre propre code (comme des risques d'injections SQL) à l'aide des outils PHPStan et enlightn/security-checker." },
+      { n: '05', title: 'Build & Deploy', desc: "Si et seulement si toutes les étapes précédentes réussissent et que le score de sécurité est validé par la pipeline, le projet est automatiquement packagé et déployé via Docker." },
+    ],
+    heroImage: cipherAccueil,
+    heroImageCaption: "Page d'accueil",
+    secondImage: cipherCoffre,
+    secondImageCaption: "Vue d'un coffre-fort",
+    competencesSectionIntro: "Véritable projet de fin d'études, cette réalisation est l'aboutissement de mon parcours de BUT :",
+    competencesSection: [
+      {
+        title: 'Développer pour le web et les médias numériques',
+        desc: "J'ai poussé le développement web à un niveau avancé en concevant une architecture découplée sécurisée (Symfony pour l'API, Nuxt pour le frontend et PostgreSQL pour les données). J'ai également mis en place l'interfaçage de services d'authentification forte (Double authentification 2FA) et des algorithmes de chiffrement de pointe (AES-256).",
+      },
+      {
+        title: 'Entreprendre dans le secteur du numérique',
+        desc: "Ce projet illustre parfaitement ma capacité à construire mon projet professionnel en accord avec mes aspirations (devenir ingénieur DevSecOps). J'ai fait preuve d'une autonomie totale en gérant et conduisant ce projet de bout en bout. De plus, j'ai identifié un besoin réel et non pourvu en entreprise (le partage de clés d'API et secrets entre développeurs) pour concevoir un outil y répondant précisément, ce qui démontre une forte capacité d'initiative et d'entreprenariat.",
+      },
+    ],
   },
 ];
 
 const allProjectDetails = [...projectDetails, ...projetsBUTDetails];
 
 const competences = [
-  {
-    n: 'C1', name: 'Comprendre', sub: 'les écosystèmes numériques',
-    desc: "Analyse de l'existant, des besoins métiers et des contraintes techniques avant chaque intégration.",
-    link: "Audit de l'appli & du site Webflow",
-  },
-  {
-    n: 'C2', name: 'Concevoir', sub: 'une production multimédia',
-    desc: "Conception des parcours et de l'interface en cohérence avec le design system de l'entreprise.",
-    link: "Refonte de l'appli de commande",
-  },
-  {
-    n: 'C3', name: 'Exprimer', sub: 'une intention créative',
-    desc: "Mise en forme de l'identité de marque sur la page d'attente du live et les composants.",
-    link: "Page d'attente « Passation de témoins »",
-  },
   {
     n: 'C4', name: 'Développer', sub: 'pour le web et les médias',
     desc: 'Intégration front (Vue, TypeScript), code custom Leaflet et composants documentés dans Storybook.',
@@ -486,7 +616,13 @@ const takeaways = [
       setTimeout(onScroll, 250);
 
       // ── PROJECT OVERLAY ────────────────────────────────────────────────────
-      // Indices 0-3 = stage projects, 4-7 = BUT projects
+      // Indices 0-4 = stage, 5-7 = BUT, 8 = personnel
+      const STAGE_COUNT = 5;
+      const BUT_START = 5;
+      const BUT_COUNT = 3;
+      const PERSO_START = 8;
+      const PERSO_COUNT = 1;
+
       const overlay = document.getElementById('project-overlay')!;
       const overlayCounter = document.getElementById('overlay-counter');
       const overlayNextLabel = document.getElementById('overlay-next-label');
@@ -494,18 +630,29 @@ const takeaways = [
 
       function openProject(i: number) {
         currentProjectIndex = i;
-        const isStage = i < 4;
-        const groupIdx = isStage ? i : i - 4;
+        let groupIdx: number;
+        let counterText: string;
+        let hash: string;
+
+        if (i < BUT_START) {
+          groupIdx = i;
+          counterText = `projet 0${groupIdx + 1} / 0${STAGE_COUNT}`;
+          hash = `#projet-${groupIdx + 1}`;
+        } else if (i < PERSO_START) {
+          groupIdx = i - BUT_START;
+          counterText = `projet BUT 0${groupIdx + 1} / 0${BUT_COUNT}`;
+          hash = `#projet-but-${groupIdx + 1}`;
+        } else {
+          groupIdx = i - PERSO_START;
+          counterText = `projet perso 0${groupIdx + 1} / 0${PERSO_COUNT}`;
+          hash = `#projet-perso-${groupIdx + 1}`;
+        }
 
         document.querySelectorAll('[id^="proj-detail-"]').forEach((el, j) => {
           el.classList.toggle('hidden', j !== i);
         });
 
-        if (overlayCounter) {
-          overlayCounter.textContent = isStage
-            ? `projet 0${groupIdx + 1} / 04`
-            : `projet BUT 0${groupIdx + 1} / 04`;
-        }
+        if (overlayCounter) overlayCounter.textContent = counterText;
 
         const article = document.getElementById(`proj-detail-${i}`);
         if (overlayNextLabel && article instanceof HTMLElement) {
@@ -514,15 +661,18 @@ const takeaways = [
 
         overlay.classList.remove('hidden');
         overlay.scrollTop = 0;
+        document.documentElement.style.overflow = 'hidden';
         document.body.style.overflow = 'hidden';
+        document.getElementById('progress-bar-container')?.style.setProperty('display', 'none');
 
-        const hash = isStage ? `#projet-${groupIdx + 1}` : `#projet-but-${groupIdx + 1}`;
         history.pushState(null, '', hash);
       }
 
       function closeProject() {
         overlay.classList.add('hidden');
+        document.documentElement.style.overflow = '';
         document.body.style.overflow = '';
+        document.getElementById('progress-bar-container')?.style.removeProperty('display');
         history.replaceState(null, '', location.pathname + location.search);
       }
 
@@ -534,11 +684,13 @@ const takeaways = [
       document.getElementById('overlay-close')?.addEventListener('click', closeProject);
       document.getElementById('overlay-prev')?.addEventListener('click', closeProject);
       document.getElementById('overlay-next')?.addEventListener('click', () => {
-        const isStage = currentProjectIndex < 4;
-        if (isStage) {
-          openProject((currentProjectIndex + 1) % 4);
+        const i = currentProjectIndex;
+        if (i < BUT_START) {
+          openProject((i + 1) % STAGE_COUNT);
+        } else if (i < PERSO_START) {
+          openProject(BUT_START + ((i - BUT_START + 1) % BUT_COUNT));
         } else {
-          openProject(4 + ((currentProjectIndex - 4 + 1) % 4));
+          openProject(PERSO_START + ((i - PERSO_START + 1) % PERSO_COUNT));
         }
       });
 
@@ -547,17 +699,19 @@ const takeaways = [
       });
 
       function syncFromHash() {
-        const stageM = /^#projet-([1-4])$/.exec(location.hash);
-        const butM = /^#projet-but-([1-4])$/.exec(location.hash);
-        if (stageM) openProject(Math.max(0, Math.min(3, parseInt(stageM[1], 10) - 1)));
-        else if (butM) openProject(4 + Math.max(0, Math.min(3, parseInt(butM[1], 10) - 1)));
+        const stageM = /^#projet-([1-9])$/.exec(location.hash);
+        const butM = /^#projet-but-([1-9])$/.exec(location.hash);
+        const persoM = /^#projet-perso-([1-9])$/.exec(location.hash);
+        if (stageM) openProject(Math.max(0, Math.min(STAGE_COUNT - 1, parseInt(stageM[1], 10) - 1)));
+        else if (butM) openProject(BUT_START + Math.max(0, Math.min(BUT_COUNT - 1, parseInt(butM[1], 10) - 1)));
+        else if (persoM) openProject(PERSO_START + Math.max(0, Math.min(PERSO_COUNT - 1, parseInt(persoM[1], 10) - 1)));
       }
       syncFromHash();
       window.addEventListener('hashchange', () => {
-        if (!/^#projet(-but)?-\d/.test(location.hash)) closeProject();
+        if (!/^#projet(-but|-perso)?-\d/.test(location.hash)) closeProject();
       });
       window.addEventListener('popstate', () => {
-        if (!/^#projet(-but)?-\d/.test(location.hash)) {
+        if (!/^#projet(-but|-perso)?-\d/.test(location.hash)) {
           overlay.classList.add('hidden');
           document.body.style.overflow = '';
         }

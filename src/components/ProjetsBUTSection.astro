@@ -1,11 +1,16 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
 interface ProjetBUT {
   n: string;
   title: string;
   tags: string[];
   desc: string;
-  img: string;
+  heroImage?: ImageMetadata;
   projectIndex: number;
+  group?: 'but' | 'personnel';
+  competences?: string[];
 }
 interface Props {
   projets: ProjetBUT[];
@@ -28,33 +33,66 @@ const { projets } = Astro.props;
     <div class="flex items-center gap-4 mb-10 reveal">
       <span class="font-mono text-[13px] text-accent">03</span>
       <span class="w-12 h-px bg-white/20"></span>
-      <span class="font-mono text-[12px] tracking-[0.18em] uppercase text-[#8a8a96]">Projets universitaires · BUT MMI 2025/2026</span>
+      <span class="font-mono text-[12px] tracking-[0.18em] uppercase text-[#8a8a96]">Projets · BUT MMI &amp; Personnel</span>
     </div>
 
     <h2
       class="m-0 mb-[52px] font-semibold leading-[1.02] tracking-[-0.02em] reveal"
       style="max-width:22ch; font-size:clamp(32px,4.6vw,68px);"
     >
-      Quatre projets conduits au cours de l'année universitaire.
+      Projets réalisés au cours de l'année universitaire.
     </h2>
+
+    <div id="project-filters" class="flex gap-2 mb-10 reveal">
+      {(['all', 'but', 'personnel'] as const).map((f) => (
+        <button
+          data-filter={f}
+          class="font-mono text-[12px] tracking-[0.12em] uppercase px-4 py-[7px] rounded-full border transition-all duration-200 cursor-pointer"
+          style={f === 'all'
+            ? 'color:var(--color-accent); border-color:rgb(var(--acc-rgb) / 0.5); background:rgb(var(--acc-rgb) / 0.1);'
+            : 'color:#6a6a76; border-color:rgba(255,255,255,0.1); background:transparent;'}
+        >
+          {f === 'all' ? 'Tous' : f === 'but' ? 'BUT MMI' : 'Personnel'}
+        </button>
+      ))}
+    </div>
 
     <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(440px,100%),1fr)); gap:24px;">
       {projets.map((p) => (
         <button
           data-project-id={String(p.projectIndex)}
+          data-project-group={p.group ?? 'but'}
           class="reveal text-left flex flex-col border border-white/[0.08] rounded-[14px] overflow-hidden cursor-pointer transition-all duration-300 hover:border-accent/40 hover:-translate-y-[3px]"
           style="appearance:none; background:rgba(13,13,18,0.7);"
         >
           <div
-            class="relative flex items-center justify-center border-b border-white/[0.07]"
-            style="height:160px; background:repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px);"
+            class="relative flex items-center justify-center border-b border-white/[0.07] overflow-hidden"
+            style="height:200px;"
           >
-            <span class="absolute top-[14px] left-4 font-mono text-[13px] text-accent">{p.n}</span>
+            {p.heroImage ? (
+              <>
+                <Image
+                  src={p.heroImage}
+                  alt={p.title}
+                  class="absolute inset-0 w-full h-full object-cover object-top"
+                  style="opacity:0.75;"
+                />
+                <div
+                  class="absolute inset-0"
+                  style="background:linear-gradient(to bottom, rgba(7,7,10,0.55) 0%, rgba(7,7,10,0.1) 50%, rgba(7,7,10,0.45) 100%);"
+                ></div>
+              </>
+            ) : (
+              <div
+                class="absolute inset-0"
+                style="background:repeating-linear-gradient(0deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px), repeating-linear-gradient(90deg, rgba(255,255,255,0.025) 0 1px, transparent 1px 28px);"
+              ></div>
+            )}
+            <span class="absolute top-[14px] left-4 font-mono text-[13px] text-accent z-[1]">{p.n}</span>
             <span
-              class="absolute top-[13px] right-4 font-mono text-[10px] tracking-[0.12em] uppercase border border-accent/30 rounded-full px-2 py-[3px]"
-              style="color:var(--color-accent); background:rgb(var(--acc-rgb) / 0.07);"
-            >BUT MMI</span>
-            <span class="font-mono text-[12px] text-[#5a5a66]">{p.img}</span>
+              class="absolute top-[13px] right-4 font-mono text-[10px] tracking-[0.12em] uppercase border border-accent/30 rounded-full px-2 py-[3px] z-[1]"
+              style="color:var(--color-accent); background:rgb(var(--acc-rgb) / 0.12); backdrop-filter:blur(6px);"
+            >{p.group === 'personnel' ? 'Personnel' : 'BUT MMI'}</span>
           </div>
           <div class="flex flex-col flex-1 p-6">
             <h3 class="m-0 text-[22px] font-semibold leading-[1.2] tracking-[-0.01em]">{p.title}</h3>
@@ -66,6 +104,16 @@ const { projets } = Astro.props;
                 >{t}</span>
               ))}
             </div>
+            {p.competences && p.competences.length > 0 && (
+              <div class="flex flex-wrap gap-[6px] mb-4">
+                {p.competences.map(c => (
+                  <span
+                    class="font-mono text-[10px] tracking-[0.1em] uppercase border rounded-full px-[9px] py-[3px]"
+                    style="color:#a3a3ad; border-color:rgba(255,255,255,0.15); background:rgba(255,255,255,0.04);"
+                  >{c}</span>
+                ))}
+              </div>
+            )}
             <p class="m-0 mb-4 text-[14.5px] leading-[1.65] text-[#a3a3ad]">{p.desc}</p>
             <div class="mt-auto pt-4 border-t border-white/[0.07] flex items-center justify-end">
               <span class="flex items-center gap-2 font-mono text-[12px] text-accent whitespace-nowrap">
@@ -78,3 +126,23 @@ const { projets } = Astro.props;
     </div>
   </div>
 </section>
+
+<script>
+  const section = document.getElementById('projets')!;
+  const filterBtns = Array.from(section.querySelectorAll<HTMLButtonElement>('[data-filter]'));
+  const projectCards = Array.from(section.querySelectorAll<HTMLElement>('[data-project-group]'));
+
+  const activeStyle = 'color:var(--color-accent); border-color:rgb(var(--acc-rgb) / 0.5); background:rgb(var(--acc-rgb) / 0.1);';
+  const inactiveStyle = 'color:#6a6a76; border-color:rgba(255,255,255,0.1); background:transparent;';
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.dataset.filter!;
+      filterBtns.forEach(b => { b.style.cssText = b === btn ? activeStyle : inactiveStyle; });
+      projectCards.forEach(card => {
+        const show = filter === 'all' || card.dataset.projectGroup === filter;
+        (card as HTMLElement).style.display = show ? '' : 'none';
+      });
+    });
+  });
+</script>
