@@ -9,6 +9,7 @@ interface Mission {
   desc: string;
   result: string;
   img: ImageMetadata | string;
+  competences?: string[];
 }
 interface Props {
   missions: Mission[];
@@ -78,6 +79,16 @@ const { missions } = Astro.props;
                 >{t}</span>
               ))}
             </div>
+            {m.competences && m.competences.length > 0 && (
+              <div class="flex flex-wrap gap-[6px] mb-4">
+                {m.competences.map(c => (
+                  <span
+                    class="font-mono text-[10px] tracking-[0.1em] uppercase border rounded-full px-[9px] py-[3px]"
+                    style="color:#a3a3ad; border-color:rgba(255,255,255,0.15); background:rgba(255,255,255,0.04);"
+                  >{c}</span>
+                ))}
+              </div>
+            )}
             <p class="m-0 mb-4 text-[14.5px] leading-[1.65] text-[#a3a3ad]">{m.desc}</p>
             <div class="mt-auto pt-4 border-t border-white/[0.07] flex items-center justify-between gap-3">
               <span class="text-[13px] leading-[1.4] text-[#8a8a96]">{m.result}</span>
