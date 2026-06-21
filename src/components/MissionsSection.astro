@@ -1,11 +1,14 @@
 ---
+import type { ImageMetadata } from 'astro';
+import { Image } from 'astro:assets';
+
 interface Mission {
   n: string;
   title: string;
   tags: string[];
   desc: string;
   result: string;
-  img: string;
+  img: ImageMetadata | string;
 }
 interface Props {
   missions: Mission[];
@@ -35,7 +38,7 @@ const { missions } = Astro.props;
       class="m-0 mb-[52px] font-semibold leading-[1.02] tracking-[-0.02em] reveal"
       style="max-width:16ch; font-size:clamp(32px,4.6vw,68px);"
     >
-      Cinq projets réalisés durant le stage.
+      Quatre projets réalisés durant le stage.
     </h2>
 
     <div style="display:grid; grid-template-columns:repeat(auto-fill, minmax(min(440px,100%),1fr)); gap:24px;">
@@ -46,11 +49,24 @@ const { missions } = Astro.props;
           style="appearance:none; background:rgba(13,13,18,0.7);"
         >
           <div
-            class="relative flex items-center justify-center border-b border-white/[0.07]"
-            style="height:160px; background:repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 11px, transparent 11px 22px);"
+            class="relative border-b border-white/[0.07] overflow-hidden"
+            style="height:160px;"
           >
-            <span class="absolute top-[14px] left-4 font-mono text-[13px] text-accent">{m.n}</span>
-            <span class="font-mono text-[12px] text-[#5a5a66]">{m.img}</span>
+            <span class="absolute top-[14px] left-4 z-[1] font-mono text-[13px] text-accent">{m.n}</span>
+            {typeof m.img === 'string' ? (
+              <div class="w-full h-full flex items-center justify-center" style="background:repeating-linear-gradient(135deg, rgba(255,255,255,0.03) 0 11px, transparent 11px 22px);">
+                <span class="font-mono text-[12px] text-[#5a5a66]">{m.img}</span>
+              </div>
+            ) : (
+              <>
+                <Image
+                  src={m.img}
+                  alt={m.title}
+                  class="absolute inset-0 w-full h-full object-cover object-top"
+                />
+                <div class="absolute inset-0" style="background:linear-gradient(to bottom, rgba(7,7,10,0.1) 0%, rgba(7,7,10,0.5) 100%);"></div>
+              </>
+            )}
           </div>
           <div class="flex flex-col flex-1 p-6">
             <h3 class="m-0 text-[22px] font-semibold leading-[1.2] tracking-[-0.01em]">{m.title}</h3>

@@ -20,9 +20,22 @@ import cipherCoffre from '../assets/pojets-universitaires/cipher/cipher-vue-coff
 import livePageAttente from '../assets/projets-stage/live-page-attente.png';
 import liveFlyerMaquette from '../assets/projets-stage/live-flyer-maquette.png';
 import liveResponsif from '../assets/projets-stage/live-responsif.png';
+import carteMapScreen from '../assets/projets-stage/Carte-interactive-webflow/Screenshot 2026-06-21 14.49.08.png';
+import carteCmsScreen from '../assets/projets-stage/Carte-interactive-webflow/Screenshot 2026-06-21 14.51.27.png';
+import cantineAncienAccueil from '../assets/projets-stage/cantine-de-saison/ancien-accueil.png';
+import cantineAncienCommander from '../assets/projets-stage/cantine-de-saison/ancien-commander.png';
+import cantineFigmaGlobal from '../assets/projets-stage/cantine-de-saison/figma-global.png';
+import cantineFigmaMobile from '../assets/projets-stage/cantine-de-saison/figam-version-mobile.png';
+import cantineFigmaCommander from '../assets/projets-stage/cantine-de-saison/figma-commander.png';
+import cantineFigmaGamification from '../assets/projets-stage/cantine-de-saison/figma-gamification.png';
+import cantineDevCommander from '../assets/projets-stage/cantine-de-saison/dev-commander.png';
+import cantineSupabase from '../assets/projets-stage/cantine-de-saison/supabase-bdd.png';
+import zestFigmaButtons from '../assets/projets-stage/zest/Screenshot 2026-06-21 16.13.03.png';
+import zestTokens from '../assets/projets-stage/zest/Screenshot 2026-06-21 16.30.05.png';
+import zestStorybook from '../assets/projets-stage/zest/Screenshot 2026-06-21 16.28.53.png';
 
 const heroMeta = [
-  { k: 'Étudiant',   v: 'Ewen Davanzo' },
+  { k: 'Formation',  v: 'BUT MMI · Dev Web' },
   { k: 'Entreprise', v: 'Api Restauration' },
   { k: 'Période',    v: '16 mars → 17 juil. 2025' },
   { k: 'Durée',      v: '18 semaines' },
@@ -38,43 +51,35 @@ const entrepriseStats = [
 const missions = [
   {
     n: '01',
-    title: "Refonte de l'application de commande de repas",
-    tags: ['Vue 3', 'TypeScript', 'UI/UX', 'Design System'],
-    desc: "Application web interne permettant aux collaborateurs de commander leurs repas pour la semaine suivante. J'ai repensé les parcours et réintégré l'interface en m'appuyant sur le design system maison.",
-    result: 'Interface plus lisible, cohérente avec la charte, composants réutilisables.',
-    img: '// capture — appli de commande',
-  },
-  {
-    n: '02',
-    title: "Page d'attente du live « Passation de témoins »",
-    tags: ['Intégration', 'HTML/CSS', 'JavaScript', 'Animation'],
-    desc: "Un événement interne diffusé en live nécessitait une page d'attente. J'ai intégré l'habillage de marque et les états avant/pendant la diffusion pour offrir un point d'entrée soigné.",
-    result: "Landing d'attente animée, fidèle à l'identité de l'entreprise.",
-    img: "// capture — page d'attente",
+    title: "Refonte globale de l'application « Cantine de saison »",
+    tags: ['Vue 3', 'TypeScript', 'Figma', 'Supabase', 'SCSS/BEM'],
+    desc: "Refonte complète d'une application interne de restauration — un mois de conseption UI/UX sur Figma (gamification, Design System, contraintes sans photos) puis un mois de développement Vue 3 / TypeScript / Supabase.",
+    result: "Application redessinée de A à Z, architecture mobile-first robuste et scalable.",
+    img: cantineDevCommander,
   },
   {
     n: '03',
-    title: 'Carte interactive Leaflet sur Webflow',
-    tags: ['Leaflet', 'Webflow', 'Custom code', 'Cartographie'],
-    desc: "Dans le cadre de la refonte du site corporate sur Webflow, j'ai intégré une carte Leaflet via du code custom : marqueurs personnalisés et points d'implantation interactifs.",
-    result: "Carte sur-mesure intégrée proprement dans l'écosystème Webflow.",
-    img: '// capture — carte Leaflet',
+    title: "Implémentation d'une carte interactive sur Webflow",
+    tags: ['Leaflet', 'Webflow CMS', 'JavaScript'],
+    desc: "Dans le cadre de la migration du site corporate vers Webflow, j'ai conçu une carte interactive en Leaflet permettant de trouver les agences les plus proches — géolocalisation, recherche et filtres par secteur d'activité.",
+    result: "Preuve de Concept validée, architecture JavaScript robuste et données pilotées par le CMS Webflow.",
+    img: carteMapScreen,
   },
   {
     n: '04',
-    title: 'Design system en code',
-    tags: ['Storybook', 'Vue', 'TypeScript', 'Composants'],
-    desc: "J'ai développé des composants Vue typés en TypeScript et les ai documentés dans Storybook, pour offrir une bibliothèque vivante, testable et partagée entre les projets.",
-    result: "Socle de composants documentés, réutilisables d'un projet à l'autre.",
-    img: '// capture — Storybook',
+    title: "Zest — Conception et développement d'un Design System",
+    tags: ['Vue 3', 'TypeScript', 'SCSS', 'Storybook'],
+    desc: "En binôme avec un collègue, j'ai conçu la version « code » du Design System de l'entreprise — tokens, composants Vue 3 et documentation Storybook — pour garantir cohérence visuelle et productivité sur tous les projets.",
+    result: "Architecture monorepo structurée, package de tokens multi-thèmes, composants documentés dans Storybook.",
+    img: zestFigmaButtons,
   },
   {
     n: '05',
     title: "Page web événementielle — Live « Passage de témoin »",
-    tags: ['HTML', 'CSS', 'JavaScript', 'Responsive'],
+    tags: ['HTML', 'CSS', 'JavaScript'],
     desc: "Site web événementiel pour le live interne du passage de témoin de la direction générale — de la maquette à la mise en ligne, accessible à 12 000 collaborateurs.",
     result: "Page animée et responsive, cohérente avec la charte, mise en ligne de manière autonome.",
-    img: '// live — page d\'attente',
+    img: livePageAttente,
   },
 ];
 
@@ -83,58 +88,311 @@ const projectDetails = [
   {
     n: '01',
     group: 'stage' as const,
-    title: "Refonte de l'application de commande de repas",
-    tags: ['Vue 3', 'TypeScript', 'UI/UX', 'Design System'],
-    intro: "Le chantier principal du stage : remettre à plat l'interface que les collaborateurs utilisent chaque semaine pour réserver leurs repas.",
-    context: "L'application permettait déjà de commander, mais l'expérience gagnait à être clarifiée : hiérarchie de l'information, lisibilité des menus et fiabilité de la saisie hebdomadaire.",
-    mission: "J'ai repris les parcours de commande et réintégré l'interface en m'appuyant sur le design system maison (Vue 3, TypeScript), pour des composants cohérents et faciles à maintenir.",
-    result: "Une interface plus claire, alignée sur la charte, et un code plus simple à faire évoluer.",
-    nextLabel: "Page d'attente du live",
-  },
-  {
-    n: '02',
-    group: 'stage' as const,
-    title: "Page d'attente du live « Passation de témoins »",
-    tags: ['Intégration', 'HTML/CSS', 'JavaScript', 'Animation'],
-    intro: "Soigner l'arrivée des spectateurs sur le live « Passation de témoins » avec une page d'attente à l'image de l'entreprise.",
-    context: "Un événement interne diffusé en direct avait besoin d'un sas d'attente : tenir les spectateurs avant le démarrage, sans rupture avec l'identité de marque.",
-    mission: "J'ai intégré la page d'attente — habillage de marque, compte à rebours et états avant / pendant le live — pour offrir un point d'entrée propre jusqu'au lancement.",
-    result: "Une page d'attente animée et fidèle à la charte, prête pour le jour J.",
-    nextLabel: "Carte Leaflet sur Webflow",
+    title: "Refonte globale de l'application « Cantine de saison »",
+    tags: ['Vue 3', 'TypeScript', 'Figma', 'Supabase', 'SCSS', 'BEM'],
+    competences: ['Développer', 'Entreprendre'],
+    intro: "« Cantine de saison » est l'application interne utilisée par tous les employés de l'entreprise pour gérer leurs repas hebdomadaires. L'outil gère deux grands types de profils :",
+    introExtra: [
+      "Côté Utilisateurs (Convives) : Commande de plats pour la semaine suivante, notation, partage ou récupération de repas avec des collègues, et accès à l'historique.",
+      "Côté Administration (Cantiniers) : Gestion des menus par date, anticipation des quantités à commander, validation des passages au self, gestion des profils utilisateurs, commande pour des invités et accès aux statistiques.",
+      "L'ancienne version souffrait d'une interface vieillissante, d'un manque de fluidité et de lacunes en matière d'accessibilité. J'ai donc été chargé de reprendre ce projet de A à Z : un mois et demi dédié à la conception (UI/UX), suivi d'un mois de développement technique.",
+    ],
+    context: "",
+    mission: "",
+    result: "",
+    nextLabel: "Implémentation d'une carte interactive sur Webflow",
+    gallery: [
+      { src: cantineAncienAccueil,     caption: "Interface actuelle — page d'accueil" },
+      { src: cantineAncienCommander,   caption: "Interface actuelle — page commander" },
+      { src: cantineFigmaGlobal,       caption: "Maquette Figma — vue d'ensemble desktop" },
+      { src: cantineFigmaMobile,       caption: "Maquette Figma — version mobile" },
+      { src: cantineFigmaCommander,    caption: "Maquette Figma — page commander" },
+      { src: cantineFigmaGamification, caption: "Maquette Figma — page profil & gamification" },
+    ],
+    adminImages: [
+      { src: cantineDevCommander, caption: "Développement — page commander" },
+      { src: cantineSupabase,     caption: "Interface Supabase — schéma de la base de données" },
+    ],
+    stack: [
+      { name: 'Vue.js (Vue 3)', role: 'SPA — navigation rapide et fluide' },
+      { name: 'TypeScript',     role: 'Typage strict — sécurité du code' },
+      { name: 'Supabase',       role: "BaaS — authentification & base de données" },
+      { name: 'SCSS & BEM',     role: 'Styles structurés — convention de nommage' },
+      { name: 'Figma',          role: 'Maquettes & prototypes avancés' },
+      { name: 'Faker',          role: 'Génération de données fictives pour les tests' },
+    ],
+    featuresTitle: "Phase 1 — Conception & Maquettage",
+    featuresIntro: "La première étape consistait à repenser totalement l'expérience utilisateur et l'interface via Figma, tout en respectant des contraintes strictes :",
+    features: [
+      {
+        title: "Appropriation du Design System",
+        desc: "J'ai dû concevoir l'interface en utilisant le Design System de l'entreprise, ce qui impliquait de composer avec des couleurs et des typographies imposées pour garantir la cohérence de marque.",
+      },
+      {
+        title: "Contrainte visuelle majeure",
+        desc: "Les menus changeant constamment, il était impossible d'utiliser des photos de nourriture. J'ai dû trouver des solutions graphiques alternatives pour rendre une application de restauration appétissante et intuitive sans images de plats.",
+      },
+      {
+        title: "Stratégie de Gamification",
+        desc: "Pour encourager des comportements écoresponsables et lutter contre le gaspillage alimentaire, j'ai imaginé et intégré un système ludique (points, badges et grades) récompensant les bonnes pratiques des employés.",
+      },
+      {
+        title: "Maîtrise avancée de Figma",
+        desc: "Cette phase m'a permis de pousser mes compétences en UI/UX en créant des prototypes avancés (sliders horizontaux et verticaux) et en gérant une bibliothèque complexe de composants, variantes, propriétés et variables.",
+      },
+    ],
+    adminTitle: "Phase 2 — Architecture Technique et Développement",
+    adminFeaturesIntro: "Une fois la maquette validée, j'ai entamé la phase de développement avec pour objectif principal la scalabilité et la maintenabilité du code :",
+    adminFeatures: [
+      {
+        title: "Frontend (Vue.js & TypeScript)",
+        desc: "J'ai opté pour Vue.js afin de créer une SPA (Single Page Application) garantissant une navigation extrêmement rapide et fluide. L'utilisation de TypeScript a permis de sécuriser le code (typage strict) et d'éviter les erreurs silencieuses fréquentes en JavaScript.",
+      },
+      {
+        title: "Backend & Base de données (Supabase)",
+        desc: "J'ai choisi Supabase, une technologie moderne prête à l'emploi (BaaS), parfaite pour gérer facilement l'authentification et l'infrastructure de la base de données (commandes, notes, gestion dynamique des dates limites de commande). J'ai également généré des données fictives réalistes via Faker pour les tests.",
+      },
+      {
+        title: "Intégration (SCSS & BEM)",
+        desc: "En prévision de ma future participation au Design System technique de l'entreprise, j'ai utilisé SCSS couplé à la convention de nommage BEM (Block Element Modifier). Cela garantit un code CSS structuré, imbriqué intelligemment et lisible par toute l'équipe.",
+      },
+    ],
+    ciTitle: "Défis rencontrés et Adaptabilité",
+    ciFullWidth: true,
+    ciText: "Ce projet m'a confronté à des défis concrets qui ont mis à l'épreuve ma capacité à m'adapter :",
+    ciItems: [
+      {
+        n: '01',
+        title: "Évolution du périmètre (Scope creep)",
+        desc: "Initialement pensé comme une application de quatre pages, le projet s'est révélé beaucoup plus dense en raison de la complexité de la partie administration. Pour absorber cette croissance de pages, j'ai dû pivoter ergonomiquement, remplaçant le « Header » prévu par une « Navbar » latérale, beaucoup plus scalable.",
+      },
+      {
+        n: '02',
+        title: "Industrialisation du code",
+        desc: "L'application contenant de très nombreux tableaux de données, j'ai conçu un « super composant Tableau » dynamique et réutilisable partout, évitant ainsi la duplication de code.",
+      },
+      {
+        n: '03',
+        title: "Approche Mobile-First",
+        desc: "Tout le développement a été pensé en « mobile-first » pour répondre aux usages réels des employés. Le projet est actuellement en pause au profit de missions plus urgentes, mais les fondations techniques sont robustes et prêtes pour la suite.",
+      },
+    ],
+    competencesSectionIntro: "Ce projet justifie l'acquisition des deux compétences majeures grâce à la prise en charge complète du cycle de vie du produit :",
+    competencesSection: [
+      {
+        title: "Entreprendre dans le secteur du numérique",
+        desc: "La phase de conception démontre ma capacité à analyser un besoin utilisateur complexe et à proposer des solutions innovantes (gamification contre le gaspillage alimentaire, contournement de l'absence de photos). L'utilisation experte de Figma et le respect d'un Design System prouvent ma maturité en matière de conception de produits numériques.",
+      },
+      {
+        title: "Développer pour le web et les médias numériques",
+        desc: "La phase de réalisation met en évidence ma capacité à concevoir une architecture logicielle moderne et sécurisée (Vue.js, TypeScript, Supabase). Les choix structurels (super composants, convention BEM, adaptation de la navigation face à l'augmentation du nombre de pages) illustrent ma rigueur technique en matière de maintenabilité et de scalabilité.",
+      },
+    ],
   },
   {
     n: '03',
     group: 'stage' as const,
-    title: 'Carte interactive Leaflet sur Webflow',
-    tags: ['Leaflet', 'Webflow', 'Custom code', 'Cartographie'],
-    intro: "Donner à voir les implantations de l'entreprise sur une carte interactive, intégrée à la refonte du site corporate.",
-    context: "Le site corporate était refondu sur Webflow ; il fallait y intégrer une carte des implantations, cohérente avec le design du site.",
-    mission: "J'ai intégré une carte Leaflet via du code custom dans Webflow : marqueurs personnalisés, style sur-mesure et points d'implantation interactifs.",
-    result: "Une carte sur-mesure, fluide et intégrée proprement dans l'écosystème Webflow.",
-    nextLabel: "Design system en code",
+    title: "Implémentation d'une carte interactive sur Webflow",
+    tags: ['Leaflet', 'Webflow CMS', 'JavaScript'],
+    competences: ['Développer', 'Entreprendre'],
+    intro: "Dans une démarche de modernisation, l'entreprise a décidé de migrer progressivement l'ensemble de ses sites web du CMS WordPress vers Webflow. Contrairement à WordPress qui repose beaucoup sur des plugins externes (ce qui pose souvent des problèmes de sécurité, de lenteur et de mises à jour complexes), Webflow est une plateforme intégrée qui génère un code visuel très propre, gère nativement l'hébergement et offre une interface beaucoup plus stable et maintenable sur le long terme. Dans le cadre de la refonte du site vitrine, ma mission principale a été d'étudier et d'implémenter une nouvelle fonctionnalité : une carte interactive permettant aux utilisateurs de trouver les agences les plus proches de chez eux.",
+    context: "",
+    mission: "",
+    result: "",
+    nextLabel: "Zest — Conception et développement d'un Design System",
+    stack: [
+      { name: 'Leaflet',     role: 'Bibliothèque JS open source — cartographie interactive' },
+      { name: 'Webflow CMS', role: "Base de données interne — collections d'agences" },
+      { name: 'JavaScript',  role: 'Architecture MVC — logique, filtres et interactions' },
+    ],
+    featuresIntro: "L'implémentation de code sur Webflow requiert une grande rigueur, car ce n'est pas un framework front-end traditionnel (comme Vue ou React). Pour garantir un code propre et maintenable, j'ai fait des choix architecturaux que j'ai présentés à mes collègues :",
+    features: [
+      {
+        title: "Séparation des responsabilités",
+        desc: "J'ai structuré mon code JavaScript de manière à séparer strictement la Vue (l'affichage de la carte), la Donnée (les informations des agences) et la Logique (le « cerveau » qui gère les filtres et recherches). Cela permet d'avoir un système robuste qui ne cassera pas facilement lors des futures mises à jour.",
+      },
+      {
+        title: "Utilisation du CMS Webflow",
+        desc: "Le terme CMS dans Webflow désigne un système de base de données interne structuré sous forme de collections, très différent d'un CMS global comme WordPress. J'ai utilisé cet outil pour stocker les données des agences et de leurs secteurs d'activités. Ainsi, à l'avenir, n'importe quel collaborateur non-technique pourra ajouter, modifier ou supprimer une agence dans l'interface de Webflow, et la carte interactive se mettra à jour automatiquement sans avoir à toucher une seule ligne de code.",
+      },
+    ],
+    heroImage: carteMapScreen,
+    heroImageCaption: "Preuve de Concept — carte interactive des agences",
+    secondImage: carteCmsScreen,
+    secondImageCaption: "Les agences de test dans le CMS Webflow",
+    adminTitle: "Preuve de Concept (PoC) — Fonctionnalités",
+    adminFeaturesIntro: "Afin de prouver la faisabilité technique du projet, j'ai développé une première version fonctionnelle (Preuve de Concept) en utilisant Leaflet, une bibliothèque JavaScript open source spécialisée dans la cartographie. Cette version intègre les fonctionnalités clés :",
+    adminFeatures: [
+      {
+        title: "Affichage dynamique des agences",
+        desc: "Les agences sont chargées depuis les collections du CMS Webflow et affichées dynamiquement sur la carte sous forme de marqueurs interactifs.",
+      },
+      {
+        title: "Recherche par ville ou code postal",
+        desc: "Système de recherche permettant à l'utilisateur de localiser rapidement les agences par nom de ville ou code postal.",
+      },
+      {
+        title: "Géolocalisation",
+        desc: "Bouton de géolocalisation pour détecter la position actuelle de l'utilisateur et afficher l'agence la plus proche.",
+      },
+      {
+        title: "Filtres par secteur d'activité",
+        desc: "Filtres de recherche par secteur d'activité (Scolaire, crèche, entreprise, hôpital, clinique, etc.). Le design final n'est pas encore appliqué, l'objectif actuel étant de valider la logique métier et la fluidité des interactions.",
+      },
+    ],
+    ciTitle: "Audit Technologique & Aide à la Décision",
+    ciText: "Le développement de la version finale avec son design abouti démarrera une fois le choix de la technologie cartographique définitive validé par le directeur marketing de l'entreprise. Je lui présenterai prochainement un comparatif détaillé entre deux solutions :",
+    ciItems: [
+      {
+        n: '01',
+        title: 'Leaflet',
+        desc: "Solution open source et totalement gratuite, mais au rendu visuel moins moderne, avec des performances standards et une personnalisation limitée.",
+      },
+      {
+        n: '02',
+        title: 'Mapbox',
+        desc: "Solution beaucoup plus moderne, performante et hautement personnalisable visuellement, mais dont le modèle économique devient payant au-delà d'un certain nombre de visites mensuelles.",
+      },
+    ],
+    competencesSectionIntro: "Ce projet de stage me permet de justifier la validation de mes deux compétences majeures :",
+    competencesSection: [
+      {
+        title: "Développer pour le web et les médias numériques",
+        desc: "J'ai géré l'intégration et l'interface d'un service externe de cartographie (Leaflet) via JavaScript. J'ai également prouvé ma capacité à structurer des bases de données de manière logique avec les collections du CMS Webflow, tout en concevant une architecture de code robuste et maintenable, en isolant le traitement des données de l'interface utilisateur.",
+      },
+      {
+        title: "Entreprendre dans le secteur du numérique",
+        desc: "J'ai mené une conduite de projet intégrant des enjeux économiques et stratégiques. Ma démarche d'audit comparatif (Leaflet vs Mapbox) et la présentation de ces choix techniques à la Direction Marketing prouvent ma capacité à employer des notions de gestion et d'économie pour conseiller l'entreprise dans sa stratégie numérique. La réflexion sur l'autonomie future des collaborateurs (grâce au CMS Webflow) démontre également une vision à long terme du produit.",
+      },
+    ],
   },
   {
     n: '04',
     group: 'stage' as const,
-    title: 'Design system en code',
-    tags: ['Storybook', 'Vue', 'TypeScript', 'Composants'],
-    intro: "Transformer le design system en une bibliothèque de composants vivante, documentée et réutilisable.",
-    context: "Le design system existait côté design ; l'enjeu était de le traduire en composants front fiables, documentés et partagés entre les projets.",
-    mission: "J'ai développé des composants Vue typés en TypeScript et les ai documentés dans Storybook — variantes, états et exemples d'usage à l'appui.",
-    result: "Un socle de composants documentés et testables, réutilisé d'un projet à l'autre.",
+    title: "Zest — Conception et développement d'un Design System",
+    tags: ['Vue 3', 'TypeScript', 'SCSS', 'Storybook', 'pnpm workspace'],
+    competences: ['Développer', 'Entreprendre'],
+    intro: "Un « Design System » est un référentiel commun qui regroupe toutes les règles visuelles d'une entreprise (couleurs, typographies, espacements) et ses composants interactifs (boutons, formulaires, menus). Son but est double : garantir une cohérence visuelle absolue sur tous les sites de l'entreprise et faire gagner un temps précieux aux équipes, qui n'ont plus à recréer ces éléments à chaque nouveau projet. La mission qui m'a été confiée, en binôme avec un collègue développeur, est de créer la version « code » de ce Design System existant sur Figma — une bibliothèque prête à l'emploi pour tous les développeurs de l'entreprise.",
+    context: "",
+    mission: "",
+    result: "",
     nextLabel: "Page web événementielle — Live « Passage de témoin »",
+    heroImage: zestTokens,
+    heroImageCaption: "Maquette Figma — palette de tokens et thèmes",
+    secondImage: zestFigmaButtons,
+    secondImageCaption: "Maquette Figma — composant Button, variantes et états",
+    adminImages: [
+      { src: zestStorybook, caption: "Storybook — documentation vivante des composants" },
+    ],
+    stack: [
+      { name: 'Vue 3',            role: 'Framework JS — composants interactifs' },
+      { name: 'TypeScript',       role: 'Typage strict & autocomplétion' },
+      { name: 'SCSS',             role: 'Styles dynamiques — thèmes & tokens' },
+      { name: 'pnpm workspace',   role: 'Architecture monorepo — sous-paquets' },
+      { name: 'Storybook',        role: 'Documentation vivante & playground' },
+      { name: 'GitLab / Gitflow', role: 'Versioning & revues de code (MR)' },
+    ],
+    featuresIntro: "Créer un outil qui sera utilisé par d'autres développeurs demande une grande rigueur. J'ai activement participé aux réunions d'architecture logicielle, car le moindre mauvais choix technique ici aura de lourdes conséquences sur tous les futurs projets de l'entreprise. L'enjeu principal était de garantir une excellente DX (Developer Experience) — faire en sorte que l'outil soit facile, intuitif et robuste à utiliser pour mes collègues. Pour cela, nous avons sélectionné des technologies modernes et performantes :",
+    features: [
+      {
+        title: "Vue.js (Vue 3)",
+        desc: "Le framework JavaScript utilisé pour créer les composants interactifs.",
+      },
+      {
+        title: "TypeScript",
+        desc: "Une surcouche à JavaScript qui ajoute un typage strict et permet l'autocomplétion — le code suggère automatiquement les bonnes options au développeur, évitant ainsi les erreurs.",
+      },
+      {
+        title: "SCSS et variables CSS",
+        desc: "Pour coder et gérer de manière dynamique toutes les règles de style.",
+      },
+      {
+        title: "pnpm workspace",
+        desc: "Un outil permettant de gérer efficacement un projet divisé en plusieurs sous-paquets distincts (monorepo).",
+      },
+    ],
+    adminTitle: "Structure du Projet",
+    adminFeaturesIntro: "Pour rendre le projet maintenable et évolutif (scalable), nous l'avons découpé en trois parties distinctes :",
+    adminFeatures: [
+      {
+        title: "Le package « Tokens » (Partie indépendante)",
+        desc: "Les tokens sont les plus petites unités du design (les codes couleurs exacts, les tailles de police, les arrondis). Ce paquet est volontairement indépendant pour qu'un projet externe puisse n'importer que les couleurs de l'entreprise sans s'encombrer du reste. C'est la partie sur laquelle je travaille actuellement. Elle intègre une forte complexité car elle doit gérer deux thèmes distincts (interne et externe), chacun décliné en mode clair (Light) et sombre (Dark).",
+      },
+      {
+        title: "La bibliothèque UI (Interface Utilisateur)",
+        desc: "C'est le catalogue des composants Vue 3 qui utilisent les tokens. La complexité de développement y est élevée. Par exemple, un simple composant « Bouton » doit être codé pour gérer des dizaines d'états différents : tailles (petit, moyen, grand), variantes (avec ou sans icône, destructif/rouge, par défaut), et interactions (survolé par la souris, désactivé, etc.).",
+      },
+      {
+        title: "Storybook",
+        desc: "Un outil qui sert de documentation vivante. Il génère une interface web (un « playground ») où les développeurs peuvent visualiser les composants isolés, lire leur documentation et tester leurs différents états en direct avant de les intégrer dans leurs projets.",
+      },
+    ],
+    ciTitle: "Méthodologie et Travail Collaboratif",
+    ciText: "Ce projet me permet de m'immerger totalement dans les standards du travail collaboratif en entreprise. Nous utilisons GitLab avec la méthode Gitflow pour gérer les versions de notre code. Concrètement, le développement fonctionne par « Merge Requests » : mon code est relu, analysé et validé par mon collègue, et inversement, j'examine et valide également son code (peer review) avant toute fusion avec la branche principale. Cette revue de code croisée garantit une qualité logicielle irréprochable tout en favorisant le partage de connaissances.",
+    competencesSectionIntro: "Ce projet d'envergure valide de manière très concrète mes deux compétences clés :",
+    competencesSection: [
+      {
+        title: "Développer pour le web et les médias numériques",
+        desc: "Je démontre une maîtrise avancée de l'intégration web et de l'ingénierie logicielle front-end (Vue 3, TypeScript, SCSS). La création d'une architecture en workspace et la gestion de la complexité algorithmique des composants (gestion des états, des thèmes et du Dark Mode) prouvent ma capacité à développer des outils web robustes, scalables et destinés à être interfacés avec de multiples projets consommateurs.",
+      },
+      {
+        title: "Entreprendre dans le secteur du numérique",
+        desc: "Travailler sur un Design System est une démarche hautement stratégique pour une entreprise, visant à optimiser les coûts, gagner du temps de production et unifier la communication numérique. De plus, ma participation active aux réunions d'architecture, ma gestion rigoureuse du projet via Gitflow, et ma collaboration étroite avec mon binôme et l'équipe UX/UI démontrent ma capacité à apprendre et à gérer un projet complexe dans un environnement d'entreprise réel.",
+      },
+    ],
   },
   {
     n: '05',
     group: 'stage' as const,
     title: "Page web événementielle — Live « Passage de témoin de la Direction Générale »",
     tags: ['HTML', 'CSS', 'JavaScript', 'UI/UX', 'Responsive'],
-    intro: "Lors de mon stage chez Api Restauration, l'entreprise m'a confié la réalisation d'un site web dédié à un événement interne majeur : le passage de témoin de la direction générale prévu le 1er juillet. L'enjeu de ce projet était de taille, car le directeur actuel devait passer la main à la nouvelle génération lors d'une diffusion en direct destinée à l'ensemble des collaborateurs du groupe, soit plus de 12 000 personnes.",
-    context: "Avant de coder, j'ai géré la phase de conception en collaboration avec les autres services de l'entreprise : Maquettage : J'ai d'abord réalisé une maquette de la « page d'attente » (le site accessible avant le jour J) afin de proposer une première direction visuelle. Collaboration interdisciplinaire : J'ai soumis cette maquette au pôle Communication pour validation. Suite à nos échanges, j'ai adapté mon design pour qu'il respecte la charte graphique du flyer d'invitation qu'ils avaient déjà créé, assurant ainsi une cohérence visuelle totale sur l'événement.",
-    mission: "Une fois le design validé, je me suis occupé du développement technique de la page d'attente : Technologies utilisées : Intégration pure en HTML et CSS, avec l'ajout de JavaScript pour dynamiser l'interface. Responsive Design : J'ai conçu le site pour qu'il s'adapte parfaitement à toutes les tailles d'écrans (ordinateurs, tablettes, smartphones), une nécessité pour que les 12 000 employés puissent y accéder depuis n'importe quel appareil. Animations et Finitions : J'ai intégré des animations CSS/JS pour rendre la page d'attente plus vivante et engageante, et j'ai rédigé et intégré la page des mentions légales nécessaire pour la conformité du site.",
-    result: "J'ai pris en charge la mise en ligne autonome de cette page d'attente sur les serveurs. Pour le jour de l'événement, ma mission consistera à réaliser une seconde page web, sur laquelle j'intégrerai l'iframe (le module vidéo externe) permettant de diffuser le flux en direct à tous les collaborateurs.",
-    nextLabel: "Refonte de l'application de commande de repas",
     competences: ['Développer', 'Entreprendre'],
+    intro: "Lors de mon stage chez Api Restauration, l'entreprise m'a confié la réalisation d'un site web dédié à un événement interne majeur : le passage de témoin de la direction générale prévu le 1er juillet. L'enjeu de ce projet était de taille, car le directeur actuel devait passer la main à la nouvelle génération lors d'une diffusion en direct destinée à l'ensemble des collaborateurs du groupe, soit plus de 12 000 personnes.",
+    context: "",
+    mission: "",
+    result: "J'ai pris en charge la mise en ligne autonome de cette page d'attente sur les serveurs. Pour le jour de l'événement, ma mission consistera à réaliser une seconde page web, sur laquelle j'intégrerai l'iframe (le module vidéo externe) permettant de diffuser le flux en direct à tous les collaborateurs.",
+    nextLabel: "Refonte globale de l'application « Cantine de saison »",
+    stack: [
+      { name: 'HTML / CSS',  role: "Structure et mise en forme de l'interface" },
+      { name: 'JavaScript',  role: 'Animations et dynamisme de la page' },
+      { name: 'Responsive',  role: "Adaptation à tous les formats d'écran" },
+      { name: 'Figma',       role: 'Maquettage et conception UI' },
+    ],
+    featuresTitle: "Phase de Conception",
+    featuresIntro: "Avant de coder, j'ai géré la phase de conception en collaboration avec les autres services de l'entreprise :",
+    features: [
+      {
+        title: "Maquettage",
+        desc: "J'ai d'abord réalisé une maquette de la « page d'attente » (le site accessible avant le jour J) afin de proposer une première direction visuelle.",
+      },
+      {
+        title: "Collaboration interdisciplinaire",
+        desc: "J'ai soumis cette maquette au pôle Communication pour validation. Suite à nos échanges, j'ai adapté mon design pour qu'il respecte la charte graphique du flyer d'invitation qu'ils avaient déjà créé, assurant ainsi une cohérence visuelle totale sur l'événement.",
+      },
+    ],
+    heroImage: livePageAttente,
+    heroImageCaption: "Première maquette",
+    secondImage: liveFlyerMaquette,
+    secondImageCaption: "Flyer à gauche et maquette adaptée à droite",
+    adminTitle: "Développement Technique",
+    adminFeaturesIntro: "Une fois le design validé, je me suis occupé du développement technique de la page d'attente :",
+    adminFeatures: [
+      {
+        title: "Technologies utilisées",
+        desc: "Intégration pure en HTML et CSS, avec l'ajout de JavaScript pour dynamiser l'interface.",
+      },
+      {
+        title: "Responsive Design",
+        desc: "J'ai conçu le site pour qu'il s'adapte parfaitement à toutes les tailles d'écrans (ordinateurs, tablettes, smartphones), une nécessité pour que les 12 000 employés puissent y accéder depuis n'importe quel appareil.",
+      },
+      {
+        title: "Animations et Finitions",
+        desc: "J'ai intégré des animations CSS/JS pour rendre la page d'attente plus vivante et engageante, et j'ai rédigé et intégré la page des mentions légales nécessaire pour la conformité du site.",
+      },
+    ],
+    adminImages: [
+      { src: liveResponsif, caption: "Site en format tablette" },
+    ],
     competencesSectionIntro: "Ce projet de stage illustre parfaitement ma capacité à mobiliser mes deux compétences majeures dans un contexte professionnel réel et à fort enjeu :",
     competencesSection: [
       {
@@ -146,12 +404,6 @@ const projectDetails = [
         desc: "J'ai conduit ce projet de bout en bout en répondant à un besoin d'entreprise précis. Le travail d'itération sur la maquette avec le pôle Communication et l'adaptation stricte à une charte graphique existante valident ma capacité à appliquer des notions de communication numérique et à collaborer efficacement avec différents services.",
       },
     ],
-    heroImage: livePageAttente,
-    heroImageCaption: "Première maquette",
-    secondImage: liveFlyerMaquette,
-    secondImageCaption: "Flyer à gauche et maquette adapatée à droite",
-    thirdImage: liveResponsif,
-    thirdImageCaption: "Site en format tablette",
   },
 ];
 
@@ -164,7 +416,7 @@ const projetsBUT = [
     tags: ['Symfony', 'PHP', 'Twig', 'Gotenberg', 'Stripe', 'CI'],
     desc: "Micro-service de génération de PDF avec modèle freemium, paiement Stripe et pipeline CI — conçu comme un produit commercialisable réel.",
     heroImage: polypdfAccueil,
-    projectIndex: 5,
+    projectIndex: 4,
     competences: ['Développer', 'Entreprendre'],
   },
   {
@@ -174,7 +426,7 @@ const projetsBUT = [
     tags: ['Vue.js', 'Symfony', 'GraphQL', 'API Platform', 'PHP'],
     desc: "Plateforme cinématographique interactive en architecture découplée — frontend Vue.js et backend Symfony communiquant via GraphQL, avec backoffice administrateur et pipeline CI.",
     heroImage: civerseAccueil,
-    projectIndex: 6,
+    projectIndex: 5,
     competences: ['Développer'],
   },
   {
@@ -184,7 +436,7 @@ const projetsBUT = [
     tags: ['Unity', 'C#', 'VR', 'Vue.js', 'Tailwind CSS', 'CI/CD'],
     desc: "Jeu de tir à la première personne en réalité virtuelle sur Meta Quest, avec univers Cyberpunk et site de présentation déployé automatiquement via CI/CD.",
     heroImage: nexusAccueil,
-    projectIndex: 7,
+    projectIndex: 6,
     competences: ['Développer', 'Entreprendre'],
   },
   {
@@ -194,7 +446,7 @@ const projetsBUT = [
     tags: ['Symfony', 'Nuxt', 'PostgreSQL', 'DevSecOps'],
     desc: "Application de gestion et partage sécurisés d'identifiants entre développeurs, avec chiffrement AES-256, 2FA, logs d'audit et pipeline DevSecOps complète.",
     heroImage: cipherAccueil,
-    projectIndex: 8,
+    projectIndex: 7,
     competences: ['Développer', 'Entreprendre'],
   },
 ];
@@ -367,7 +619,7 @@ const projetsBUTDetails = [
     context: '',
     mission: '',
     result: '',
-    nextLabel: 'Polypdf — Micro-service de conversion et génération de PDF',
+    nextLabel: 'Cipher — Gestionnaire de mots de passe pour développeurs',
     competences: ['Développer', 'Entreprendre'],
     competencesSectionIntro: "Ce projet pluridisciplinaire m'a permis de mobiliser l'ensemble de mes compétences :",
     competencesSection: [
@@ -426,7 +678,7 @@ const projetsBUTDetails = [
     secondImageCaption: 'Vue en jeu',
   },
   {
-    n: '01',
+    n: '04',
     group: 'personnel' as const,
     title: 'Cipher — Gestionnaire de mots de passe pour développeurs',
     tags: ['Symfony', 'Nuxt', 'PostgreSQL', 'CI/CD', 'DevSecOps'],
@@ -434,7 +686,7 @@ const projetsBUTDetails = [
     context: '',
     mission: '',
     result: '',
-    nextLabel: 'Cipher — Gestionnaire de mots de passe pour développeurs',
+    nextLabel: 'Polypdf — Micro-service de conversion et génération de PDF',
     competences: ['Développer', 'Entreprendre'],
     stack: [
       { name: 'Symfony',    role: 'Backend · Framework PHP' },
@@ -507,21 +759,25 @@ const allProjectDetails = [...projectDetails, ...projetsBUTDetails];
 
 const competences = [
   {
-    n: 'C4', name: 'Développer', sub: 'pour le web et les médias',
-    desc: 'Intégration front (Vue, TypeScript), code custom Leaflet et composants documentés dans Storybook.',
-    link: 'Design system & carte Leaflet',
+    n: 'C4',
+    name: 'Développer',
+    sub: 'pour le web et les médias numériques',
+    desc: "Vue.js + TypeScript sur deux projets d'envergure : la refonte complète de Cantine de saison (SPA, Supabase, SCSS/BEM, architecture scalable) et le Design System Zest (monorepo pnpm, tokens multi-thèmes, composants Vue 3 documentés dans Storybook). JavaScript vanilla pour la carte Leaflet sur Webflow (géolocalisation, filtres, données pilotées par CMS). HTML/CSS/JS responsive en intégration pure pour le Live Passage de Témoin. En formation : Symfony/PHP (Polypdf, Cineverse), API GraphQL découplée, C#/Unity en VR (Nexus) et Nuxt + DevSecOps (Cipher) — 8 projets couvrant frontend, backend, 3D et sécurité.",
+    link: '8 projets · du Vue.js au C# en passant par le PHP',
   },
   {
-    n: 'C5', name: 'Entreprendre', sub: 'dans un cadre professionnel',
-    desc: 'Autonomie, gestion de plusieurs projets en parallèle et collaboration avec les équipes.',
-    link: '4 projets menés en 18 semaines',
+    n: 'C5',
+    name: 'Entreprendre',
+    sub: 'dans le secteur du numérique',
+    desc: "Conduite autonome de projets de A à Z : conception Figma → développement → mise en ligne sans supervision directe sur le Passage de Témoin. Collaboration inter-services avec le pôle Communication pour adapter la charte graphique, et avec les équipes UX/UI pour le Design System. Innovation fonctionnelle : gamification anti-gaspi intégrée dans Cantine de saison, PoC Leaflet sur Webflow là où aucune solution native n'existait. Adoption des pratiques professionnelles : Gitflow, revues de code croisées, réunions d'architecture sur Zest. En formation : modèle freemium + Stripe (Polypdf), pipeline DevSecOps complète from scratch (Cipher).",
+    link: 'Conception · livraison · collaboration inter-services',
   },
 ];
 
 const takeaways = [
-  { k: 'Technique', v: "Vue, TypeScript et Storybook au service d'un design system vivant." },
-  { k: 'Méthode',   v: 'Mener plusieurs projets de front, prioriser et livrer proprement.' },
-  { k: 'Posture',   v: 'Dialoguer avec les équipes web et design, gagner en autonomie.' },
+  { k: 'Technique',    v: "Architecture monorepo, tokens multi-thèmes et composants Vue 3 documentés dans Storybook — Zest m'a donné une vision concrète de ce qu'est un Design System en production." },
+  { k: 'Méthode',      v: "Gitflow, revues de code croisées, réunions d'architecture : des pratiques professionnelles absorbées par immersion, sur quatre projets de stage menés en parallèle." },
+  { k: 'Polyvalence',  v: "De la conception Figma à la mise en ligne d'un live pour 12 000 personnes, en passant par la VR et le DevSecOps — huit projets, un spectre technique délibérément large." },
 ];
 ---
 
@@ -565,7 +821,7 @@ const takeaways = [
       style="padding:36px clamp(20px,7vw,80px); display:flex; flex-wrap:wrap; gap:16px; align-items:center; justify-content:space-between; font-family:'JetBrains Mono',monospace; font-size:12px; color:#6a6a76;"
     >
       <span>© 2025 — Ewen Davanzo · BUT MMI</span>
-      <span>Portfolio universitaire · Api Restauration</span>
+      <span>Portfolio universitaire</span>
       <a href="#accueil" class="text-accent no-underline hover:underline">↑ retour en haut</a>
     </footer>
 
@@ -616,12 +872,10 @@ const takeaways = [
       setTimeout(onScroll, 250);
 
       // ── PROJECT OVERLAY ────────────────────────────────────────────────────
-      // Indices 0-4 = stage, 5-7 = BUT, 8 = personnel
-      const STAGE_COUNT = 5;
-      const BUT_START = 5;
-      const BUT_COUNT = 3;
-      const PERSO_START = 8;
-      const PERSO_COUNT = 1;
+      // Indices 0-3 = stage, 4-7 = autres (BUT + perso)
+      const STAGE_COUNT = 4;
+      const OTHER_START = 4;
+      const OTHER_COUNT = 4;
 
       const overlay = document.getElementById('project-overlay')!;
       const overlayCounter = document.getElementById('overlay-counter');
@@ -634,18 +888,14 @@ const takeaways = [
         let counterText: string;
         let hash: string;
 
-        if (i < BUT_START) {
+        if (i < OTHER_START) {
           groupIdx = i;
           counterText = `projet 0${groupIdx + 1} / 0${STAGE_COUNT}`;
           hash = `#projet-${groupIdx + 1}`;
-        } else if (i < PERSO_START) {
-          groupIdx = i - BUT_START;
-          counterText = `projet BUT 0${groupIdx + 1} / 0${BUT_COUNT}`;
-          hash = `#projet-but-${groupIdx + 1}`;
         } else {
-          groupIdx = i - PERSO_START;
-          counterText = `projet perso 0${groupIdx + 1} / 0${PERSO_COUNT}`;
-          hash = `#projet-perso-${groupIdx + 1}`;
+          groupIdx = i - OTHER_START;
+          counterText = `projet 0${groupIdx + 1} / 0${OTHER_COUNT}`;
+          hash = `#projet-u-${groupIdx + 1}`;
         }
 
         document.querySelectorAll('[id^="proj-detail-"]').forEach((el, j) => {
@@ -685,12 +935,10 @@ const takeaways = [
       document.getElementById('overlay-prev')?.addEventListener('click', closeProject);
       document.getElementById('overlay-next')?.addEventListener('click', () => {
         const i = currentProjectIndex;
-        if (i < BUT_START) {
+        if (i < OTHER_START) {
           openProject((i + 1) % STAGE_COUNT);
-        } else if (i < PERSO_START) {
-          openProject(BUT_START + ((i - BUT_START + 1) % BUT_COUNT));
         } else {
-          openProject(PERSO_START + ((i - PERSO_START + 1) % PERSO_COUNT));
+          openProject(OTHER_START + ((i - OTHER_START + 1) % OTHER_COUNT));
         }
       });
 
@@ -700,11 +948,9 @@ const takeaways = [
 
       function syncFromHash() {
         const stageM = /^#projet-([1-9])$/.exec(location.hash);
-        const butM = /^#projet-but-([1-9])$/.exec(location.hash);
-        const persoM = /^#projet-perso-([1-9])$/.exec(location.hash);
+        const otherM = /^#projet-u-([1-9])$/.exec(location.hash);
         if (stageM) openProject(Math.max(0, Math.min(STAGE_COUNT - 1, parseInt(stageM[1], 10) - 1)));
-        else if (butM) openProject(BUT_START + Math.max(0, Math.min(BUT_COUNT - 1, parseInt(butM[1], 10) - 1)));
-        else if (persoM) openProject(PERSO_START + Math.max(0, Math.min(PERSO_COUNT - 1, parseInt(persoM[1], 10) - 1)));
+        else if (otherM) openProject(OTHER_START + Math.max(0, Math.min(OTHER_COUNT - 1, parseInt(otherM[1], 10) - 1)));
       }
       syncFromHash();
       window.addEventListener('hashchange', () => {
